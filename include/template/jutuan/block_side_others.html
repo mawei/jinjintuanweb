@@ -1,0 +1,20 @@
+<!--{if $others}-->
+<div class="sbox side-business">
+	<div class="sbox-top"><img src="/static/css/i/othergou.gif"/></div>
+	<div class="sbox-content">
+		<div class="tip">
+		<!--{loop $others $one}-->		
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-bottom:1px dotted #ccc">
+
+		<tr height="76">
+			<td><a href="/team.php?id={$one['id']}"><img src="${team_image($one['image'])}" width="95" height="70" border="0" /></a></td>
+			<td style="padding-left:5px"><a style="color:#585858" href="/team.php?id={$one['id']}">${mb_substr(strip_tags($one['title']), 0, 32, 'UTF-8')}...</a></td>
+		</tr>
+
+	</table>
+		<!--{/loop}-->
+		</div>
+	</div>
+	<div class="sbox-bottom"></div>
+</div>
+<!--{/if}-->

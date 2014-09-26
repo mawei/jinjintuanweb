@@ -1,0 +1,27 @@
+<!--{if $others}-->
+<div class="sbox side-business side_others">
+		<h2>正在团购</h2>
+        <div class="sidebar_div_inside">
+		<!--${$index=0}-->
+		<!--{loop $others $one}-->
+			<!--<b>${++$index}、{$one['title']}</b>-->
+			<p style=" text-align:left; text-indent:0; margin-bottom:0; margin-top:16px;"><a href="/team.php?id={$one['id']}">{$one['product']}</a></p>
+            <p style=" text-align:left; text-indent:0; margin-bottom:0;">(<span style="color:#FF6600;"><b>
+            <!--{if $one['showref']==''}-->
+            	${$one['now_number']>$one['max_number']&&$one['max_number']>0?$one['max_number']:$one['now_number']}
+            <!--{else}-->
+            	<!--${
+					$rc=array('type' => $one['id']);
+					$now_num=Table::Count('team',$rc,'now_number');
+					$now_num+=$one['now_number'];
+				}-->
+				{$now_num}
+			<!--{/if}-->
+            </b></span>人已购买)</p>
+			<!--{if $one['image']}--><a href="/team.php?id={$one['id']}"><img src="${team_image($one['image'], true)}" width="195" border="0" /></a><!--{/if}-->
+			<!-- <p><a href="/team.php?id={$one['id']}">&raquo;&nbsp;点击查看本单详情</a></p> -->
+		<!--{/loop}-->
+        </div>
+        <div class="sbox_bottom"></div>
+</div>
+<!--{/if}-->

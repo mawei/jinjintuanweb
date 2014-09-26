@@ -1,0 +1,60 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_account('/coupon/index.php')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+				<div style="width:70.7%;float:left">
+			
+			
+                <div class="head">
+                    <h2>我的{$INI['system']['couponname']}</h2>
+                    <ul class="filter">
+						<li class="label">分类: </li>
+						${current_coupon_sub('index')}
+					</ul>
+				</div>
+                <div class="sect">
+				<div style="font-size:16px;font-weight:900;color:red;padding-right:15px">【高级警告】:&nbsp;&nbsp;&nbsp;短信只能下载一次,请谨慎点击使用,若已经操作过,只能打印优惠券</div>
+				<div><span style="font-size:16px;font-weight:900;color:red;padding-right:15px">【温馨提示】:</span>短信发送由服务商控制,我方不能百分百保证收到,建议有条件的团友还是打印优惠券</div>
+				<!--{if $selector=='index'&&!$coupons}-->
+					<div class="notice">目前没有可用的{$INI['system']['couponname']}</div>
+					<!--{/if}-->
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+						<tr><th width="240">团购项目</th><th width="100" nowrap>券编号</th><th width="60" nowrap>券密码</th><th width="100" nowrap>有效日期</th><th width="80">操作</th></tr>
+					<!--{loop $coupons $index $one}-->
+						<tr ${$index%2?'':'class="alt"'}>
+							<td><a class="deal-title" href="/team.php?id={$one['team_id']}" target="_blank">{$teams[$one['team_id']]['title']}</a></td>
+							<td>{$one['id']}</td>
+							<td>{$one['secret']}</td>
+							<td>${date('Y-m-d', $one['expire_time'])}</td>
+							<td><a href="/ajax/coupon.php?action=sms&id={$one['id']}" class="ajaxlink">短信</a>｜<a href="/coupon/print.php?id={$one['id']}" target="_blank">打印</a></td>
+						</tr>						
+					<!--{/loop}-->
+						<tr><td colspan="5">{$pagestring}</td></tr>
+                    </table>
+				</div>
+				</div>
+
+				<div style="width:29%;float:left">
+		<!--{include block_side_aboutcoupon}-->
+				</div>
+				<div class="clear"></div>				
+				
+				
+				
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

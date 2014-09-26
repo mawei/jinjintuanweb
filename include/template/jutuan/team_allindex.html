@@ -1,0 +1,83 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<a href="/team.php?id=ZTNTM2" target="_blank"><img style="padding-bottom:5px;padding-left:2px" src="/static/img/topnotice.jpg" /></a>
+<div id="recent-deals">
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <script language="javascript" src="/include/function/salesTime.js"></script>
+					<div class="head"><h2>{$city['name']}正在进行的团购</h2></div>
+					<div class="sect">
+	<!--{loop $teams $index $one}-->
+		<div class="${$index++%2?'alt':''} ${$index<=2?'first':''}">
+
+			<div class="otherteam_00">
+<!--            	<div class="otherteam_01">
+                	<div class="date_01">${date('Y年n月', $one['begin_time'])} </div>
+                    <h1> ${date('j', $one['begin_time'])} </h1>
+                </div>
+-->
+			<div class="otherteam_02" id="pic">
+<!--					<div class="{$one['picclass']}"></div>  -->
+					<a href="/team.php?id={$one['id']}" title="{$one['title']}" target="_blank"><img alt="{$one['title']}" src="${team_image($one['image'])}" width="200" height="120" style="border:1px dotted #ccc"></a>
+				</div>
+
+				<div class="otherteam_03">
+                	<h3>
+		       	    <a href="/team.php?id={$one['id']}" title="{$one['title']}" target="_blank">${mb_substr(strip_tags($one['title']), 0, 31, 'UTF-8')}...</a>
+		       	    </h3>
+                	<div class="detailmessage" >
+<!--                        <span ><b class="fontstyle">{$one['now_number']}</b>人购买</span>   -->
+                        <span>原价:<strong>{$currency}<span style="text-decoration:line-through;">${moneyit($one['market_price'])}</span></strong></span>
+                        <span>聚团价:<strong><span class="fontstyle">{$currency}${moneyit($one['team_price'])}</span></strong></span>
+                        <span>优惠:<strong><span class="fontstyle">${moneyit((10*$one['team_price']/$one['market_price']))}</span></strong>折</span>
+
+					</div>
+                    <div class="askview">
+						<table width="100%" cellspacing="0" cellpadding="0" border="0">
+							<tr>
+								 <td width="100px"><a href="/team.php?id={$one['id']}">查看详情>></a></td>
+								 <td width="160px" align="right" style="color:#646464">本期聚团剩余时间:</td>
+								 <td width="10px"><img src="/static/css/i/list_time.gif"></a></td>
+								<td width="180px">
+                                    <span style="display:none;" id="iTime{$index}">{$one['end_time'] - $daytime}</span>
+									<font color="#000" style="padding-left:5px" id="tick{$index}"></font>
+                                    <script language="javascript">
+                                       Account{$index}=setInterval("RemainTime('{$index}')",1000);
+                                    </script>
+								</td>
+
+							</tr>
+						</table>
+                    </div>
+
+				</div>
+				<div class="otherteam_04">
+					<a href="/team/buy.php?id={$one['id']}"><img src="/static/css/i/goonbuy.jpg"></a> <br/>
+					<font color="#303030">已售出数量：</font><span class="fontstyle"><!--{if $one['id']==109}-->{$one['now_number']*7}<!--{else}-->{$one['now_number']}<!--{/if}--></span><font color="#303030"> 件</font>
+
+				</div>
+
+			</div>
+
+		</div>
+			<!--{/loop}-->
+						<div class="clear"></div>
+						<div>{$pagestring}</div>
+
+
+					</div>
+							<div class="clear"></div>
+            </div>
+
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+    </div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

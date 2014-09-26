@@ -1,0 +1,76 @@
+<!--{include header}-->
+<!--${
+	$ask_con = array('team_id>0', 'length(comment)>0');
+	$ask_count = Table::Count('ask', $ask_con);
+	$asks = DB::LimitQuery('ask', array('condition'=>$ask_con, 'size'=>3, 'order'=>'ORDER BY id DESC'));
+}-->
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="recent-deals">
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+			
+				<div style="width:70.7%;float:left">
+					<div class="head"><h2>{$city['name']}近期团购</h2></div>
+					<div class="sect">
+	<!--{loop $teams $index $one}-->
+		<div class="${$index++%2?'alt':''} ${$index<=2?'first':''}">
+					
+			<div class="todayteam_00">
+            	<div class="todayteam_01">
+                	<div class="date_01">${date('Y年n月', $one['begin_time'])} </div>
+                    <h1> ${date('j', $one['begin_time'])} </h1>
+                </div>
+				
+				<div class="todayteam_02" id="pic">
+					<div class="{$one['picclass']}"></div>
+					<a href="/team.php?id={$one['id']}" title="{$one['title']}" target="_blank"><img alt="{$one['title']}" src="${team_image($one['image'])}" width="200" height="120"></a>
+				</div>
+				
+				<div class="todayteam_03">
+                	<h3>	
+		       	    <a href="/team.php?id={$one['id']}" title="{$one['title']}" target="_blank">${mb_substr(strip_tags($one['title']), 0, 20, 'UTF-8')}...</a>
+		       	    </h3>
+                	<div class="detailmessage" >
+                        <span ><b class="fontstyle"><!--{if $one['id']==109}-->{$one['now_number']*7}<!--{else}-->{$one['now_number']}<!--{/if}--></b>人购买</span>   
+                        <span>原价:<strong>{$currency}<span style="text-decoration:line-through;">${moneyit($one['market_price'])}</span></strong></span>
+                        <span>现价:<strong><span class="fontstyle">{$currency}${moneyit($one['team_price'])}</span></strong></span>
+                        <span><strong><span class="fontstyle">${moneyit((10*$one['team_price']/$one['market_price']))}</span>折</strong></span>
+                    </div>
+                    <div class="askview">
+					<table width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr>
+						 <td><!--{if option_yes('moneysave')}--><div id="info_a">共为用户节省:<strong class="count">{$currency}${moneyit($one['now_number']*($one['market_price']-$one['team_price']))}</strong></div><!--{/if}--></td>
+					</tr>
+					</table>
+                    </div>
+	
+				</div>
+
+			</div>					
+					
+		</div>
+	<!--{/loop}-->
+						<div class="clear"></div>
+						<div>{$pagestring}</div>
+						
+						
+					</div>
+				</div>
+				
+				
+				<div style="width:29%;float:left">
+				<!--{include block_side_subscribe}-->
+				</div>
+				<div class="clear"></div>
+            </div>						
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+    </div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

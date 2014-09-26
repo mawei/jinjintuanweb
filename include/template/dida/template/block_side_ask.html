@@ -1,0 +1,173 @@
+<!--${
+	$ask_con = array('length(comment)>0','city_id'=>$city['id'],'state'=>0);
+	$ask_count = Table::Count('ask', $ask_con);
+	$asks = DB::LimitQuery('ask', array('condition'=>$ask_con, 'size'=>3, 'order'=>'ORDER BY id DESC'));
+}-->
+<div class="deal-consult sbox">
+		<div class="deal-consult-tip">
+			<h2>雕鹰问答</h2>
+            <div class="sidebar_div_inside">
+			<p class="nav"><a href="/team/ask.php?id={$team['id']}">查看全部({$ask_count})</a> | <a href="/team/ask.php?id={$team['id']}#post">我要提问</a><!--{if is_login()}--> | <a href="/team/ask.php">我的问答</a><!--{/if}--></p>
+			<ul class="list">
+			<!--{loop $asks $one}-->
+				<li><a href="/team/ask.php?id={$team['id']}#ask-entry-{$one['id']}" target="_blank">${htmlspecialchars(mb_substr($one['content'],0,30,'UTF-8'))}...</a></li>
+			<!--{/loop}-->
+			</ul>
+			<div class="custom-service">
+			
+			<!--{if $city['id']==2}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=9951a39dcc3bd662@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=1508579812&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="im">
+			<a href="tencent://message/?uin=562841086&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq2.gif" alt=""></a>
+			&nbsp;<a href="tencent://message/?uin=1093128651&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：021-52836080<br>
+			</p>
+			<p class="time">周一至周五 9:00-18:00</p>
+			<!--{elseif $city['id']==17}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=a6fa6062f13069f5@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=1103876698&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：0571-89710659<br>
+			</p>
+			<p class="time">周一至周五 9:00-18:00</p>
+			<!--{elseif $city['id']==18}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=d9e8b1e17e07bb80@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=1329847718&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：028-86917067<br>
+			</p>
+			<p class="time">周一至周五 9:00-18:00</p>
+			<!--{elseif $city['id']==15}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=91d6a5301056823a@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=1375921341&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：0532-80911394<br>
+			</p>
+			<p class="time">周一至周五 9:00-18:00</p>
+			<!--{elseif $city['id']==16}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=b6cd7aeb644d1ac0@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=747968519&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：029-88855025-8602<br>
+			</p>
+			<p class="time">周一至周五 9:00-18:00</p>
+			<!--{elseif $city['id']==3}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=93ed009aa93acfa8@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=1104241638&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：020-83193591<br>
+			</p>
+			<p class="time">周一至周六 9:00-18:00</p>
+			<!--{elseif $city['id']==4}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=e47059e75daabf4a@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=758840140&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：0755-83502316<br>
+			</p>
+			<p class="time">周一至周六 9:00-18:00</p>
+			<!--{elseif $city['id']==40}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=5dbd4321898d2791@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=1522006164&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：025-83205775<br>
+			</p>
+			<p class="time">周一至周五 9:00-18:00</p>
+			<!--{elseif $city['id']==19}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=161d34dbed7439e8@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=394616600&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：027-87740490<br>
+			</p>
+			<p class="time">周一至周五 9:00-18:00</p>
+			<!--{elseif $city['id']==37}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=9af68c55e509c290@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=1508954815&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：022-58196303<br>
+			</p>
+			<p class="time">周一至周五 9:00-18:00</p>
+			<!--{elseif $city['id']==41}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=6419d32927bbef31@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=712632319&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：0371-66283977<br>
+			</p>
+			<p class="time">周一至周五 9:00-18:00</p>
+			<!--{else}-->
+			<p class="im">
+			<a id="service-msn-help" href="http://settings.messenger.live.com/Conversation/IMMe.aspx?invitee=c9044620f66cb4e@apps.messenger.live.com&mkt=zh-
+cn&useTheme=true&themeName=orange&foreColor=333333&backColor=FDC098&linkColor=333333&borderColor=FB8233&buttonForeColor=333333&buttonBackColor=FFC9A5&buttonBorderColor=FB8233&bu
+ttonDisabledColor=FFC9A5&headerForeColor=333333&headerBackColor=FC9E60&menuForeColor=333333&menuBackColor=FFFFFF&chatForeColor=333333&chatBackColor=FFFFFF&chatDisabledColor=F6F6
+F6&chatErrorColor=760502&chatLabelColor=6E6C6C"><img src="/static/css/i/button-custom-msn.gif" /></a>&nbsp;<a href="tencent://message/?uin=77156367&Site=嘀嗒团限时团购网站&Menu=yes"><img SRC="/static/css/i/button-custom-qq.gif" alt=""></a>
+			</p>
+			<p class="time">
+			客服电话：010-86063075<br>
+			</p>
+			<p class="time">周一至周六 9:00-18:00</p>
+			<!--{/if}-->
+			<ul class=block_share>
+			<!--{if $INI['system']['sinajiwai']}-->
+					<li><img src="/static/css/i/sina.gif" />&nbsp;<a  href="{$INI['system']['sinajiwai']}" target="_blank">关注嘀嗒团@新浪微博</a></li>
+				<!--{/if}-->
+					<li><img src="/static/css/i/kaixin.gif" />&nbsp;<a href="http://www.kaixin001.com/home/?uid=84561516" target="_blank">关注嘀嗒团@开心网</a></li>
+				<!--{if $INI['system']['tencentjiwai']}-->
+					<li><img src="/static/css/i/tencent.gif" />&nbsp;<a href="{$INI['system']['tencentjiwai']}" target="_blank">关注嘀嗒团@腾讯微博</a></li>
+				<!--{/if}-->
+			</ul>
+			<!-- ads chengdu 028 -->
+			<!--{if $city['id']==18}-->
+			<a href="http://www.diaoying.com" target=_blank><img src=/hezuo/chengdu028.gif width=200></a>
+			<!--{/if}-->
+			</div>
+</div>
+<div class="sbox_bottom"></div>
+		</div>
+
+</div>

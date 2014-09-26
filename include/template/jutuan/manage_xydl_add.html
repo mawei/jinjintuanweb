@@ -1,0 +1,64 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_market('xydl_add')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>添加校园代理</h2>
+				</div>
+                <div class="sect">
+                    <form id="feedback-user-form" method="post" action="/manage/market/xydl_add.php" class="validator">
+                        <div class="field fullname">
+                            <label>代理姓名</label>
+                            <input type="text" size="30" name="name" class="f-input" require="true" datatype="require" />
+                        </div> 
+                        <div class="field fullname">
+                            <label>联系电话</label>
+                            <input type="text" size="30" name="phone" class="f-input" require="true" datatype="require" />
+                        </div> 
+                        <div class="field fullname">
+                            <label>Email</label>
+                            <input type="text" size="50" name="email" class="f-input" />
+                        </div>
+                        <div class="field fullname">
+                            <label>QQ</label>
+                            <input type="text" size="30" name="qq" class="f-input" />
+                        </div>
+                        <div class="field fullname">
+                            <label>就读学校</label>
+                            <input type="text" size="30" name="school" class="f-input" />
+                        </div>                          
+                        <div class="field suggest">
+                            <label>添加时间</label>
+                            <input type="text" size="30" name="addtime" id="feedback-time" class="f-input" require="true" datatype="require" readonly="readonly" />
+                            <script language="javascript">
+                                var date = new Date();
+                                document.getElementById("feedback-time").value = date.toLocaleString();
+                            </script>  
+                        </div>
+                        <div class="field fullname">
+                            <label>代表字符</label>
+                            <input type="text" size="30" name="number" class="f-input" require="true" />
+                        </div>
+                        <div class="clear"></div>
+                        <div class="act">
+                            <input type="submit" value="提交" name="commit" id="feedback-submit" class="formbutton"/>
+                        </div>
+                    </form>					
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

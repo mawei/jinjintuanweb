@@ -1,0 +1,126 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="feedback">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_forum('city')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+			<div style="width:70.7%;float:left">
+			
+                <div class="head"><h2>聚团吧语录</h2></div>
+                <div class="sect">
+                <!--{loop $thanks $index $one}-->
+                	<table cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#fafafa">
+                    	<tr>
+                        	<td rowspan="2" width="10%" align="center" valign="middle"><img src="{$one['touxiang']}" /></td>
+                            <td style="padding:5px;border-bottom:1px dashed #CCC"><font color="#FF0000">{$one['name']}</font> 发表于{$one['create_time']}</td>
+                        </tr>
+                        <tr>
+                        	<td style="padding:5px;line-height:20px">{$one['content']}</td>
+                        </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    	<tr>
+                        	<td height="30"></td>
+                        </tr>
+                    </table>
+                    <!--{/loop}-->
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                    	<tr>
+                        	<td>{$pagestring}</td>
+                        </tr>
+                    </table>
+					<h3 style="text-align:left;padding:10px"><a href="#bottom" onclick="document.getElementById('addThanks').style.display='block';"><img src="../static/css/i/comments.gif" /> &nbsp;我要发表</a></h3>                    
+                </div>
+                <div class="sect" style="display:none" id="addThanks">
+                    <p class="notice">聚团吧的出现，给您生活带来了什么样的变化，请在这里描述。</p>
+                    <a href="#" name="bottom"></a>
+                    <form id="feedback-user-form" method="post" action="/feedback/thanks_jutuan.php" class="validator">
+                        <div class="field fullname">
+                            <label>您的称呼</label>
+                            <input type="text" size="30" name="name" id="feedback-fullname" class="f-input" value="{$login_user['username']}" require="true" datatype="require" />
+                        </div> 
+                        <div class="field fullname">
+                            <label>添加时间</label>
+                            <input type="text" size="30" name="create_time" id="feedback-time" class="f-input" require="true" datatype="require" readonly="readonly" />
+                            <input type="hidden" size="30" name="state" id="feedback-time" class="f-input" require="true" datatype="require" readonly="readonly" value="0" />
+                        </div> 
+                        <div class="field email">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                        	<tr>
+                            	<td width="35%">
+                                    <label>选择头像</label>
+                                    <select name="touxiang" onchange="chooseImg(this.value)">
+                                        <option value="../static/face/1.jpg">第一张</option>
+                                        <option value="../static/face/2.jpg">第二张</option>
+                                        <option value="../static/face/3.jpg">第三张</option>
+                                        <option value="../static/face/4.jpg">第四张</option>
+                                        <option value="../static/face/5.jpg">第五张</option>
+                                        <option value="../static/face/6.jpg">第六张</option>
+                                        <option value="../static/face/7.jpg">第七张</option>
+                                        <option value="../static/face/8.jpg">第八张</option>
+                                        <option value="../static/face/9.jpg">第九张</option>
+                                        <option value="../static/face/10.jpg">第十张</option>
+                                        <option value="../static/face/11.jpg">第十一张</option>
+                                        <option value="../static/face/12.jpg">第十二张</option>
+                                        <option value="../static/face/13.jpg">第十三张</option>
+                                        <option value="../static/face/14.jpg">第十四张</option>
+                                        <option value="../static/face/15.jpg">第十五张</option>
+                                        <option value="../static/face/16.jpg">第十六张</option>
+                                        <option value="../static/face/17.jpg">第十七张</option>
+                                        <option value="../static/face/18.jpg">第十八张</option>
+                                        <option value="../static/face/19.jpg">第十九张</option>
+                                        <option value="../static/face/20.jpg">第二十张</option>
+                                    </select>
+                            	</td>
+                                <td id="tx"><img src="/static/face/1.jpg" /></td>
+								<script language="javascript">
+                                    function chooseImg(str){
+                                        if(str){
+                                            document.getElementById("tx").innerHTML = "<img src='"+str+"'>";
+                                        }
+                                    }
+									var date = new Date();
+									document.getElementById("feedback-time").value = date.toLocaleString();
+                                </script>                                
+                            </tr>
+                        </table>
+                            <span class="hint">请选择任意一张图片作为您的头像</span>
+                        </div>
+                        <div class="field suggest">
+                            <label>内容</label>
+                            <textarea cols="30" rows="5" name="content" id="feedback-suggest" class="f-textarea" require="true" datatype="require"></textarea>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="act">
+                            <input type="submit" value="提交" name="commit" id="feedback-submit" class="formbutton"/>
+                        </div>
+                    </form>
+                 </div>
+				 
+            </div>
+				<div style="width:29%;float:left">
+					<div class="side-pic" align="right" style="padding-right:20px">
+					   <p><img src="/static/img/subscribe-pic1.jpg" /></p>
+					   <p><img src="/static/img/subscribe-pic2.jpg" /></p>
+					   <p><img src="/static/img/subscribe-pic3.jpg" /></p> 
+					</div>
+				</div>
+				<div class="clear"></div>				
+				
+				
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

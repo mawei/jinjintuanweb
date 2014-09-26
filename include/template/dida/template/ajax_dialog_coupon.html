@@ -1,0 +1,6 @@
+<div id="order-pay-dialog" class="order-pay-dialog-c" style="width:380px;">
+<h3><span id="order-pay-dialog-close" class="close" onclick="return X.boxClose();">关闭</span>{$INI['system']['couponname']}验证</h3>
+	<p class="info" id="coupon-dialog-display-id">请您输入{$INI['system']['couponname']}编号<br/>进行操作</p>
+	<p class="notice">{$INI['system']['couponname']}编号：<input id="coupon-dialog-input-id" type="text" name="id" class="f-input" style="text-transform:uppercase;" maxLength="12" onkeyup="X.coupon.dialoginputkeyup(this);" /></p>
+	<p class="act"><input id="coupon-dialog-query" class="formbutton" value="查询(可查询券号是否有效)" name="query" type="submit" onclick="return X.coupon.dialogquery();"/></p>
+</div>

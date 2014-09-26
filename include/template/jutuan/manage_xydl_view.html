@@ -1,0 +1,61 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_market('xydl_view')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>查看校园代理</h2>
+				</div>
+                <div class="sect">
+				<!--{if $xydl}-->                
+                    <div class="field fullname">
+                        <label>代理姓名：</label>
+                        {$xydl['name']}
+                    </div> 
+                    <div class="field fullname">
+                        <label>联系电话：</label>
+                        {$xydl['phone']}
+                    </div> 
+                    <div class="field fullname">
+                        <label>Email：</label>
+                        {$xydl['email']}
+                    </div>
+                    <div class="field fullname">
+                        <label>QQ：</label>
+                        {$xydl['qq']}
+                    </div>
+                    <div class="field fullname">
+                        <label>就读学校：</label>
+                        {$xydl['school']}
+                    </div>                                             
+                    <div class="field suggest">
+                        <label>添加时间：</label>
+                        {$xydl['addtime']}
+                    </div>
+                    <div class="field fullname">
+                        <label>代表字符：</label>
+                     	{$xydl['number']}
+                    </div>
+                    <div class="field fullname">
+                        <label>开发会员：</label>
+                     	{$xydl['countnum']}
+                    </div>
+                    <div class="clear"></div>	
+                <!--{/if}-->				
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

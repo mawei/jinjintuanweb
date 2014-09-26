@@ -1,0 +1,18 @@
+<!--{if $city['id']&&trim(strip_tags($INI['bulletin'][$city['id']]))}-->
+<div class="sbox side-business side_bulletin">
+			<h2>{$city['name']}公告</h2>
+            <div class="sidebar_div_inside">
+			<div>{$INI['bulletin'][$city['id']]}</div>
+            </div>
+            <div class="sbox_bottom"></div>
+</div>
+<!--{/if}-->
+<!--{if trim(strip_tags($INI['bulletin'][0]))}-->
+	<div class="sbox side_bulletin">
+			<h2>最新动态</h2>
+            <div class="sidebar_div_inside">
+			<div>{$INI['bulletin'][0]}</div>
+            </div>
+            <div class="sbox_bottom"></div>
+</div>
+<!--{/if}-->

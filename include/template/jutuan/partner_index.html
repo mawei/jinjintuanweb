@@ -1,0 +1,51 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="recent-deals">
+	<div class="dashboard" id="dashboard">
+		<ul>${current_partner($group_id)}</ul>
+	</div>
+    <div id="content">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+			
+				<div style="width:70.9%;float:left">			
+				
+				
+					<div class="head"><h2>{$category['name']}商户秀</h2></div>
+					<div class="sect">
+						<ul class="deals-list">
+						<!--{loop $partners $index $one}-->
+							<li class="${$index++%2?'alt':''} ${$index<=2?'first':''}">
+								<h4><a href="/partner.php?id={$one['id']}" title="{$one['title']}" target="_blank">{$one['title']}</a></h4>
+								<div class="pic">
+									<a href="/partner.php?id={$one['id']}" title="{$one['title']}" target="_blank"><img alt="{$one['title']}" src="${team_image($one['image'])}" width="200" height="121" style="border:1px dotted #ccc"></a>
+								</div>
+								<div class="info">${mb_substr(strip_tags($one['other']), 0, 60, 'UTF-8')}...</div>
+							</li>
+						<!--{/loop}-->
+						</ul>
+						<div class="clear"></div>
+						<div>{$pagestring}</div>
+					</div>
+					
+				</div>
+					<div style="width:28%;float:left">
+					<!--{include block_side_subscribe}-->
+					</div>		
+					<div class="clear"></div>	
+				
+				
+				
+				
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+    </div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

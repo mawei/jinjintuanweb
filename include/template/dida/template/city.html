@@ -1,0 +1,37 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="about">
+	<div id="content" class="about">
+		<div class="box clear"> 
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>选择你所在的城市</h2></div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<!--{loop $cities $letter $ones}-->	
+					<tr><td valign="top"><b>{$letter}</b></td>
+					<td valign="top"><p class="city_list" style="margin:0;">
+<!--{loop $ones $one}-->
+<!--{if $one['name']=='北京'||$one['name']=='上海'||$one['name']=='广州'||$one['name']=='杭州'||$one['name']=='西安'||$one['name']=='青岛'||$one['name']=='成都'|| $one['name']=='南京'||$one['name']=='武汉' || $one['name']=='天津' || $one['name']=='深圳'}-->
+<a href="/{$one['ename']}"><font color=red><b>{$one['name']}</b></font></a>
+<!--{else}-->
+<a href="/{$one['ename']}">{$one['name']}</a>
+<!--{/if}-->
+<!--{/loop}--></p></td></tr>
+					<!--{/loop}-->
+					</table>
+                </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+	</div>
+	<div id="sidebar">
+		<!--{include block_side_business}-->
+	</div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

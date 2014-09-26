@@ -1,0 +1,49 @@
+<!--{include html_header}-->
+<div id="hdw001">
+	<div id="hd001">
+		<div class="bgtop">
+			<div class="logo"><img src="/static/css/i/logo.gif" width="130" height="30"/></div>
+			<div class="guides">
+				<div class="city">
+					<h2>{$city['name']}</h2>
+				</div>
+				<!--{if count($hotcities)>1}-->
+				<div id="guides-city-change" class="change">【切换城市】</div>
+				<div id="guides-city-list" class="city-list">
+					<ul>${current_city($city['ename'], $hotcities)}</ul>
+				</div>
+				<!--{/if}-->
+			</div>
+		</div>
+	</div>
+	<div id="recent-deals001" class="cf">
+			<div class="sect">
+			<h2>团购项目 --<a href="{$INI['system']['wwwprefix']}/team.php?id={$team['id']}&r={$login_user_id}" title="{$one['title']}" target="_blank"> 查看团购详情</a></h2>
+				<div class="deals-list">
+				<!--{if $teams}-->
+					<div class="${$index++%2?'alt':''} ${$index<=2?'first':''}">
+						<p class="time">${date('Y年n月j日', $one['begin_time'])}--${date('Y年n月j日', $one['end_time'])}</p>
+						<h4><a href="{$INI['system']['wwwprefix']}/team.php?id={$team['id']}&r={$login_user_id}" title="{$one['title']}" target="_blank">${mb_substr(strip_tags($one['title']), 0, 60, 'UTF-8')}...</a></h4>
+						<div class="pic">
+							<div class="{$one['picclass']}"></div>
+							<a href="{$INI['system']['wwwprefix']}/team.php?id={$team['id']}&r={$login_user_id}" title="{$one['title']}" title="{$one['title']}" target="_blank"><img alt="{$one['title']}" src="${team_image($one['image'])}" width="192" height="120" style="border:1px dotted #ccc;"></a>
+						</div>
+					</div>	
+				</div>
+			</div>		
+	</div>
+				<div class="info">
+				<p class="total"><strong class="count">{$one['now_number']}</strong>人购买</p>
+				<p class="price">
+				原价：<strong class="old"><span class="money">{$currency}</span>${moneyit($one['market_price'])}</strong>&nbsp;&nbsp;&nbsp;折扣：<strong class="discount">${moneyit((10*$one['team_price']/$one['market_price']))}折</strong><br />
+				现价：<strong><span class="money">{$currency}</span>${moneyit($one['team_price'])}</strong>&nbsp;&nbsp;&nbsp;节省：<strong><span class="money">{$currency}</span>${moneyit($one['market_price']-$one['team_price'])}</strong><br />
+				</p>
+				</div>
+			<!--{/if}-->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr class="hdb">
+    <td><a href="/index.php" target="_blank">聚团吧首页</a></td>
+	<td align="right"><a href="{$INI['system']['wwwprefix']}/team.php?id={$team['id']}&r={$login_user_id}" target="_blank">查看详情>>></a></td>
+ </tr>
+</table>
+</div>

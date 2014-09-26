@@ -1,0 +1,45 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('thanks_jutuan')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>聚团吧语录</h2>
+				</div>
+                <div class="sect">
+					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="125">姓名</th><th width="193">时间</th><th width="430">内容</th><th width="148">状态</th><th width="117">操作</th></tr>
+					<!--{loop $thanks $index $one}-->
+					<tr ${$index%2?'':'class="alt"'} id="team-list-id-{$one['id']}">
+						<td>{$one['name']}</td>
+						<td>{$one['create_time']}</td>
+						<td>{$one['content']}</td>
+						<td>
+                        	<!--{if $one['state'] == 0}-->
+                            	<font color="#FF0000">未审核</font>
+                            <!--{else}-->
+                            	<font color="#000000">已审核</font>
+                            <!--{/if}-->
+                        </td>
+						<td class="op"><a href="/manage/misc/thanks_jutuan.php?action=r&id={$one['id']}&r={$currefer}" class="remove-record">删除</a><!--{if !$one['user_id']}-->｜<a href="/manage/misc/thanks_jutuan.php?action=m&id={$one['id']}&r={$currefer}">通过审核</a><!--{/if}--></td>
+					</tr>
+					<!--{/loop}-->
+					<tr><td colspan="5">{$pagestring}</tr>
+                    </table>
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

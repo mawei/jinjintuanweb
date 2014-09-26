@@ -1,0 +1,24 @@
+<!--{include header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="feedback">
+    <div id="content" class="help">
+        <div class="box">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head"><h2>友情链接</h2></div>
+                <div class="sect">
+                	<!--{loop $flinks $index $one}-->
+                   		<p style="width:140px;height:40px;float:left;text-align:center;margin-left:10px;"><img src="{$one['logo']}" widht="140" height="30" border="0" /><br /><a href="{$one['url']}" target="_blank">{$one['title']}</a></p>
+               		<!--{/loop}-->
+                 </div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

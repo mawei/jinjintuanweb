@@ -1,0 +1,64 @@
+<!--{include manage_header}-->
+
+<div id="bdw" class="bdw">
+<div id="bd" class="cf">
+<div id="coupons">
+	<div class="dashboard" id="dashboard">
+		<ul>${mcurrent_misc('flinks_edit')}</ul>
+	</div>
+    <div id="content" class="coupons-box clear mainwide">
+		<div class="box clear">
+            <div class="box-top"></div>
+            <div class="box-content">
+                <div class="head">
+                    <h2>编辑友情链接</h2>
+				</div>
+                <div class="sect">
+                    <form id="feedback-user-form" method="post" action="/manage/misc/flinks_edit.php?id={$flinks['id']}" class="validator">
+                        <div class="field fullname">
+                            <label>站点名称</label>
+                            <input type="text" size="30" name="link_name" class="f-input" require="true" datatype="require" value="{$flinks['link_name']}" /><input type="hidden" name="id" value="{$flinks['id']}" />
+                        </div> 
+                        <div class="field fullname">
+                            <label>链接网址</label>
+                            <input type="text" size="30" name="link_url" class="f-input" require="true" datatype="require"  value="{$flinks['link_url']}" />
+                        </div> 
+                        <div class="field fullname">
+                            <label>网站管理员</label>
+                            <input type="text" size="30" name="link_admin" class="f-input" require="true" value="{$flinks['link_admin']}" />
+                        </div>
+                        <div class="field fullname">
+                            <label>联系电话</label>
+                            <input type="text" size="30" name="link_phone" class="f-input" require="true" value="{$flinks['link_phone']}" />
+                        </div>                         
+                        <div class="field suggest">
+                            <label>添加时间</label>
+                            <input type="text" size="30" name="link_addtime" class="f-input" require="true" datatype="require" readonly="readonly" value="{$flinks['link_addtime']}" /> 
+                        </div>
+                        <div class="field fullname">
+                            <label>排序</label>
+                            <input type="text" size="30" name="link_order" class="f-input" require="true" value="{$flinks['link_order']}" />
+                        </div>
+                        <div class="field fullname">
+                            <label>是否显示</label>
+                            <!--{if $flinks['link_display']==0}-->
+                            <input type="radio" name="link_display" require="true" datatype="require" value="0" checked="checked" /> 不显示 <input type="radio" name="link_display" require="true" datatype="require" value="1" /> 显示
+                            <!--{else}-->
+                            <input type="radio" name="link_display" require="true" datatype="require" value="0" /> 不显示 <input type="radio" name="link_display" require="true" datatype="require" value="1" checked="checked" /> 显示
+                           	<!--{/if}-->
+                        </div>
+                        <div class="clear"></div>
+                        <div class="act">
+                            <input type="submit" value="提交" name="commit" id="feedback-submit" class="formbutton"/>
+                        </div>
+                    </form>					
+				</div>
+            </div>
+            <div class="box-bottom"></div>
+        </div>
+    </div>
+</div>
+</div> <!-- bd end -->
+</div> <!-- bdw end -->
+
+<!--{include footer}-->

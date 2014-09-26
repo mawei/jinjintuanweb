@@ -1,0 +1,37 @@
+<!--{include html_header}-->
+
+<div id="hdw001">
+	<div id="hd001">
+		<div class="bgtop">
+			<div class="logo"><img src="/static/css/i/logo.gif" width="130" height="30"/></div>
+			<div class="guides">
+				<div class="city">
+					<h2>{$city['name']}</h2>
+				</div>
+				<!--{if count($hotcities)>1}-->
+				<div id="guides-city-change" class="change">【切换城市】</div>
+				<div id="guides-city-list" class="city-list">
+					<ul>${current_city($city['ename'], $hotcities)}</ul>
+				</div>
+				<!--{/if}-->
+			</div>
+
+		</div>
+	</div>
+	<div id="recent-deals001" class="cf">
+			<div class="sect">
+			<h2>团购项目 --<a href="{$INI['system']['wwwprefix']}/team.php?id={$team['id']}&r={$login_user_id}" title="{$one['title']}" target="_blank"> 查看团购详情</a></h2>
+				<div class="deals-list">
+				<!--{if $teams}-->
+					<div class="${$index++%2?'alt':''} ${$index<=2?'first':''}">
+						<p class="time">${date('Y年n月j日', $one['begin_time'])}--${date('Y年n月j日', $one['end_time'])}</p>
+						<h4><a href="{$INI['system']['wwwprefix']}/team.php?id={$team['id']}&r={$login_user_id}" title="{$one['title']}" target="_blank">${mb_substr(strip_tags($one['title']), 0, 60, 'UTF-8')}...</a></h4>
+					</div>	
+				</div>
+			</div>		
+	</div>
+
+			<!--{/if}-->
+
+</div>
+

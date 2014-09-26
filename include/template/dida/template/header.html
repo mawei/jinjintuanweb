@@ -1,0 +1,111 @@
+<!--{include html_header}-->
+
+<div id="hdw">
+  <div id="hd">
+  	<div class="left_corner"></div>
+    <div class="right_corner"></div>
+    <div class="absolute_block_1"></div>
+    <div class="absolute_block_2"></div>
+    <div class="absolute_block_3"></div>
+    <!--{if $isFace}-->
+    <div class="absolute_block_8"></div>
+    <div class="absolute_block_6"></div>
+    <div class="absolute_block_7"></div>
+    <div class="absolute_block_4"></div>
+    <div class="absolute_block_5"></div>
+    <!--{/if}-->
+    
+    <div id="logo"><a href="/" class="link">
+    </a></div>
+    <div class="guides">
+      <div class="city">
+        <h2>{$city['name']}</h2>
+      </div>
+      <!--{if count($hotcities)>1}-->
+      <div id="guides-city-change" class="change">切换城市</div>
+      <div id="guides-city-list" class="city-list">
+        <ul>
+          ${current_city($city['ename'], $hotcities)}
+        </ul>
+        <div class="other"><a href="/cities">其他城市？</a></div>
+      </div>
+      <!--{/if}-->
+    </div>
+    <ul class="nav cf">
+      ${current_frontend()}
+    </ul>
+    <!--{if option_yes('trsimple')}-->
+    <div class="vcoupon">&raquo;&nbsp;<a href="/account/invite.php">邀请好友</a>&nbsp;&nbsp;&raquo;&nbsp;<a id="verify-coupon-id" href="javascript:;">{$INI['system']['couponname']}验证及消费登记</a>&nbsp;&nbsp;&raquo;&nbsp;<a href="javascript:;" onclick="return X.misc.locale();">简繁转换</a></div>
+    <!--{else}-->
+    <div class="vcoupon">&raquo;&nbsp;<a href="/account/invite.php">邀请好友购买返利&nbsp;${abs($INI['system']['invitecredit'])}&nbsp;元</a>
+      <!--{if $login_user}-->
+		&nbsp;&nbsp;&nbsp;&raquo;&nbsp;<a id="verify-coupon-id" href="javascript:;">{$INI['system']['couponname']}验证</a>
+    <!--{/if}-->
+</div>
+    <!--{/if}-->
+    <div class="logins">
+      <!--{if $login_user}-->
+      <ul class="links">
+        <li class="left_top_nav_bg"></li>
+        <li id="header-subscribe-body" class="subscribe">
+          <form action="/subscribe.php" method="post" id="header-subscribe-form">
+            <input type="hidden" name="city_id" value="{$city['id']}" />
+            <input id="header-subscribe-email" type="text" xtip="输入Email，订阅每日团购信息..." value="" class="f-text" name="email" />
+            <input type="hidden" value="1" name="cityid" />
+            <input type="submit" class="commit" value="订阅" />
+          </form>
+          <!--{if option_yes('smssubscribe')}-->
+          <span><a class="sms" onclick="X.miscajax('sms','subscribe');">&raquo; 短信订阅，免费！</a>&nbsp; <a class="sms" onclick="X.miscajax('sms','unsubscribe');">&raquo; 取消手机订阅</a></span>
+          <!--{/if}-->
+        </li>
+        <li class="username"><!--{if $css_hour>=6 && $css_hour<20 }-->欢迎您<!--{else}-->晚上好<!--{/if}-->，{$login_user['username']}！</li>
+        <li class="account"><a href="/order/index.php" id="myaccount" class="account">我的{$INI['system']['abbreviation']}</a></li>
+        <li class="logout"><a href="/account/logout.php">退出</a></li>
+        <li class="right_top_nav_bg"></li>
+      </ul>
+      <!--{else}-->
+      <ul class="links">
+        <li class="left_top_nav_bg"></li>
+        <li id="header-subscribe-body" class="subscribe">
+          <form action="/subscribe.php" method="post" id="header-subscribe-form">
+            <input type="hidden" name="city_id" value="{$city['id']}" />
+            <input id="header-subscribe-email" type="text" xtip="输入Email，订阅每日团购信息..." value="" class="f-text" name="email" />
+            <input type="hidden" value="1" name="cityid" />
+            <input type="submit" class="commit" value="订阅" />
+          </form>
+          <!--{if option_yes('smssubscribe')}-->
+          <span><a class="sms" onclick="X.miscajax('sms','subscribe');">&raquo; 短信订阅，免费！</a>&nbsp; <a class="sms" onclick="X.miscajax('sms','unsubscribe');">&raquo; 取消手机订阅</a></span>
+          <!--{/if}-->
+        </li>
+        <li class="login"><a href="/account/login.php">登录</a></li>
+        <li class="signup"><a href="/account/signup.php">注册</a></li>
+        <li class="right_top_nav_bg"></li>
+      </ul>
+      <!--{/if}-->
+    </div>
+    <!--{if $login_user}-->
+    <ul id="myaccount-menu">
+      <li><a href="/coupon/index.php">我的{$INI['system']['couponname']}</a></li>
+      <li><a href="/order/index.php">我的订单</a></li>
+      <li><a href="/account/refer.php">我的邀请</a></li>
+      <li><a href="/credit/index.php">账户余额</a></li>
+      <li><a href="/account/ask.php">我的问答</a></li>
+      <li><a href="/account/settings.php">账户设置</a></li>
+    </ul>
+    <!--{/if}-->
+  </div>
+</div>
+<!--{if $session_notice=Session::Get('notice',true)}-->
+<div class="sysmsgw" id="sysmsg-success">
+  <div class="sysmsg">
+    <p>{$session_notice}</p>
+    <span class="close">关闭</span></div>
+</div>
+<!--{/if}-->
+<!--{if $session_notice=Session::Get('error',true)}-->
+<div class="sysmsgw" id="sysmsg-error">
+  <div class="sysmsg">
+    <p>{$session_notice}</p>
+    <span class="close">关闭</span></div>
+</div>
+<!--{/if}-->

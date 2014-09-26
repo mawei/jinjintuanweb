@@ -1,0 +1,67 @@
+<div id="ftw">
+	<div id="ft">
+		<!--<p class="contact"><a href="/feedback/suggest.php">意见反馈</a></p> -->
+		<ul class="cf">
+			<li class="col">
+				<h3>用户帮助</h3>
+				<ul class="sub-list">
+					<li><a href="/help/tour">玩转{$INI['system']['abbreviation']}</a></li>
+					<li><a href="/help/faqs">常见问题</a></li>
+					<li><a href="/help/dida">{$INI['system']['abbreviation']}概念</a></li>
+					<li><a href="/help/api">开发API</a></li>
+				</ul>
+			</li>
+			<li class="col">
+				<h3>获取更新</h3>
+				<ul class="sub-list">
+					<li><a href="/subscribe.php?ename={$city['ename']}">邮件订阅</a></li>
+					<li><a href="/feed.php?ename={$city['ename']}">RSS订阅</a></li>
+				<!--{if $INI['system']['sinajiwai']}-->
+					<li><a href="{$INI['system']['sinajiwai']}" target="_blank">新浪微博</a></li>
+				<!--{/if}-->
+				<!--{if $INI['system']['tencentjiwai']}-->
+					<li><a href="{$INI['system']['tencentjiwai']}" target="_blank">腾讯微博</a></li>
+				<!--{/if}-->
+					<li><a href="http://t.163.com/didatuanbeijing" target="_blank">网易微博</a></li>
+				</ul>
+			</li>
+			<li class="col">
+				<h3>合作联系</h3>
+				<ul class="sub-list">
+					<li><a href="/feedback/seller.php">商务合作</a></li>
+					<li><a href="/feedback/suggest.php">意见反馈</a></li>
+					<li><a href="/biz/index.php">商家后台</a></li>
+					<!--{if is_manager(false, true)}-->
+					<li><a href="/manage/index.php">管理{$INI['system']['abbreviation']}</a></li>
+					<!--{/if}-->
+                    <li><a href="/friendship_link.php">友情链接</a></li>
+				</ul>
+			</li>
+			<li class="col">
+				<h3>公司信息</h3>
+				<ul class="sub-list">
+					<li><a href="/about/us">关于{$INI['system']['abbreviation']}</a></li>
+					<li><a href="/about/job">工作机会</a></li>
+					<li><a href="/about/contact">联系方式</a></li>
+					<li><a href="/about/terms">用户协议</a></li>
+					<li><a href="/cities">开通城市</a></li>
+				</ul>
+			</li>
+			<li class="col end">
+					<div class="logo-footer">
+					<!--{if $css_hour>=6 && $css_hour<20 }-->
+						<a href="/"><img src="/static/css/i/logo-footer.gif" /></a>
+					<!--{else}-->
+						<a href="/"><img src="/static/css/i_evening/logo-footer.gif" /></a>
+					<!--{/if}-->
+					</div>
+<a href="https://www.alipay.com/aip/aip_validate_list.htm?trust_id=AIP06052531"><img src="https://img.alipay.com/img/logo/aip/logo154x50.jpg"></a>
+			</li>
+		</ul>
+		<div class="copyright">
+		<p>&copy;<span>2010</span>&nbsp;{$INI['system']['sitename']}（didatuan.com）版权所有&nbsp;&nbsp;<a href="http://www.miitbeian.gov.cn/" target="_blank">{$INI['system']['icp']}</a>&nbsp;</p>
+		</div>
+		</div>
+	</div>
+</div>
+<!--{include html_footer}-->
