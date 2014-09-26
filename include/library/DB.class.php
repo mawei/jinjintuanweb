@@ -106,7 +106,7 @@ class DB
 		}
 		else
 		{
-			print("aaa");
+			//print("aaa");
 			self::$mError = mysql_error();
 		}
 		self::Close();
@@ -268,13 +268,13 @@ class DB
 		{
 			$v_str = null;
 			if ( is_numeric($v) )
-			{$v_str = "'{$v}'";echo 1;}
+			{$v_str = "'{$v}'";}
 			else if ( is_null($v) )
-			{$v_str = 'NULL';echo 2;}
+			{$v_str = 'NULL';}
 			else if ( is_array($v) )
-			{$v_str = $v[0];echo 3;} //for plus/sub/multi; 
+			{$v_str = $v[0];} //for plus/sub/multi; 
 			else
-			{$v_str = "'" . self::EscapeString($v) . "'";echo 4;}
+			{$v_str = "'" . self::EscapeString($v) . "'";}
 
 			$content .= "`$k`=$v_str,";
 		}
@@ -284,7 +284,6 @@ class DB
 		$sql .= " WHERE $condition";
 		
 		$result = self::Query ($sql);
-//echo $sql;die();
 		if ( false==$result )
 		{
 			self::Close();
