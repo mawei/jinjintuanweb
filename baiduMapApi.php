@@ -9,7 +9,7 @@ class BaiduMapApi
 	/*
 	 * sortby : group_price,team_id,distance
 	*/
-	static function getTeams($long, $lat, $radius, $tags, $sortby, $pageIndex, $pageSize)
+	static function getTams($long, $lat, $radius, $tags, $sortby, $pageIndex, $pageSize)
 	{
 		$teams = array();
 		$ids = array();

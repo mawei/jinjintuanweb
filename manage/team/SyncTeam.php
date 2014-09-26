@@ -25,6 +25,7 @@ class SyncTeam
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//要求结果为字符串且输出到屏幕上
 			curl_setopt($ch, CURLOPT_POST, 1);
 		}
+		
 		return $ch;
 	}
 	
