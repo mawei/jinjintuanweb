@@ -34,8 +34,6 @@ foreach($team as $k=>$v)
 		 $insert['geotable_id'] = "73762";
 		 curl_setopt($ch, CURLOPT_POSTFIELDS, $insert);
 		 $data = json_decode(curl_exec($ch),true);//运行curl
-		 //print_r($insert);
-		 print_r($insert);
 		 if($data['status'] == "0")
 		 {
 		 	$array['baidu_sync'] = '1';

@@ -119,10 +119,8 @@ else if ( is_post() ) {
 	$table->SetStrip('detail', 'systemreview', 'notice');
 
 	if ( $team['id'] && $team['id'] == $id ) {
-		$table->SetPk('id', $id);
-		$table->update($insert);
-		log_admin('team', '编辑team项目',$insert);
-		Session::Set('notice', '编辑项目信息成功');
+		
+		
 		//$p = DB::Query("select * from `partner` where id =". $team["partner_id"]);
 		$p = DB::GetQueryResult("select * from `partner` where id =".$team['partner_id'],true);
 		if($p == null)
@@ -133,6 +131,11 @@ else if ( is_post() ) {
 		}else{
 			$team['address'] = $p['address'];
 		}
+		$table->SetPk('id', $id);
+		$table->update($insert);
+		log_admin('team', '编辑team项目',$insert);
+		Session::Set('notice', '编辑项目信息成功');
+		
 		$sync = new SyncTeam();
 		$sync->updateById($team);
 		redirect( WEB_ROOT . "/manage/team/index.php");

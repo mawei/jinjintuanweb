@@ -11,7 +11,6 @@ if ( $_POST ) {
 	$express_no = $_POST['express_no'];
 
 	if (!$team_id || !$service || !$state) die('-ERR ERR_NO_DATA');
-    //print_r($express_no);exit;
 	$condition = array(
 			'service' => $service,
 			'state' => $state,

@@ -212,7 +212,6 @@ class ZFlow {
 		if (!$money || !$user_id || !$time) return 0;
 		$pay_id = "charge-{$user_id}-{$time}";
 		$pay = Table::Fetch('pay', $pay_id);
-		print_r($pay);
 		if ( $pay ) return 0;
 		$order_id = ZOrder::CreateFromCharge($money,$user_id,$time,$service);
 		

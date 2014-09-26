@@ -17,8 +17,6 @@ $credits = DB::LimitQuery('credit', array(
 			'offset' => $offset,
 			'order' => 'ORDER BY id DESC',
 			));
-//print_r($credits);
-//exit;
 $detail_ids = Utility::GetColumn($credits, 'detail_id');
 
 $pagetitle = '兑换记录';

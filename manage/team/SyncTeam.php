@@ -25,16 +25,13 @@ class SyncTeam
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//要求结果为字符串且输出到屏幕上
 			curl_setopt($ch, CURLOPT_POST, 1);
 		}
-		//$type == "GET" ? curl_setopt($ch, CURLOPT_GET, 1): curl_setopt($ch, CURLOPT_POST, 1);//post提交方式
 		return $ch;
 	}
 	
     private function getById($id)
 	{
 		$ch = $this->initCurl("http://api.map.baidu.com/geodata/v3/poi/list?ak={$this->ak}&geotable_id={$this->geotable_id}&team_id={$id},{$id}","GET");
-		//echo "http://api.map.baidu.com/geodata/v3/poi/list?ak={$this->ak}&geotable_id={$this->geotable_id}&team_id={$id},{$id}";die();
 		$data = json_decode(curl_exec($ch),true);//运行curl
-		//print_r($data);die();
 		if($data['status'] == 0)
 		{
 			return $data['pois'];
@@ -50,7 +47,6 @@ class SyncTeam
 			$team['latitude'] = $location['result']['lat'];
 		}
 		$result = $this->getById($team['id']);
-		//print_r($result);die();
 		if(result!=null)
 		{
 			//update
@@ -90,7 +86,6 @@ class SyncTeam
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $this->condition);
 			$data = json_decode(curl_exec($ch),true);//运行curl
 		}
-		//print_r($data);die();
 		$array['baidu_sync'] = $data['status'];
 		DB::Update("team",$team['id'],$array);
 		curl_close($ch);
@@ -110,7 +105,6 @@ class SyncTeam
 		$this->condition['is_search_field'] = $is_search_field;
 		$this->condition['is_index_field'] = $is_index_field;
 		$this->condition['is_unique_field'] = $is_unique_field;
-		//print_r($this->condition);die();
 		$ch = $this->initCurl("http://api.map.baidu.com/geodata/v3/column/update","POST");
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $this->condition);
 		$data = json_decode(curl_exec($ch),true);//运行curl

@@ -2,9 +2,8 @@
 require_once(dirname(dirname(__FILE__)) . '/app.php');
 
 if (is_post()) {
-	echo '1';
+	//echo '1';
 	$user = Table::Fetch('user', strval($_POST['email']), 'email');
-	//print_r($user);die();
 	if ( $user ) {
 		echo 
 		$user['recode'] = $user['recode'] ? $user['recode'] : md5(json_encode($user));
@@ -13,7 +12,7 @@ if (is_post()) {
 		));
 		mail_repass($user);
 		Session::Set('reemail', $user['email']);
-		die();
+		//die();
 		redirect( WEB_ROOT .'/account/repass.php?action=ok');
 	}
 	Session::Set('error', '你的Email没有在本站注册');

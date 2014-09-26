@@ -38,7 +38,6 @@ class ZOrder {
 				  );
 			DB::Insert('flow', $u);
 			$user = Table::FetchForce('user', $user_id);
-            //print_r($user);exit;
 			if ($user['money']<$order['origin']){
 				return false;
 			}
