@@ -98,7 +98,6 @@ class DB
 		}
 
 		$result = mysql_query( $sql, self::$mConnection );
-		//print_r($result);
 		self::$mCount++;
 
 		if ( $result )
@@ -174,28 +173,21 @@ class DB
 	{
 		$mkey = Cache::GetStringKey($sql);
 		if ( $cache > 0 ) {
-// 			echo 'abc';
-// 				echo $sql;
 			$ret = Cache::Get($mkey);
 			if ( $ret ) return $ret;
 		}
-		//print_r($sql);
 		$ret = array();
 		
 		if ( $result = self::Query($sql) )
 		{
 			while ( $row = mysql_fetch_assoc($result) )
 			{
-				//print_r($row);
 				$row = array_change_key_case($row, CASE_LOWER);
 				if ( $one )
 				{
-					//echo '2';
 					$ret = $row;
 					break;
-				}else{ 
-					//echo '3';
-						
+				}else{ 						
 					array_push( $ret, $row );
 				}
 				
@@ -203,7 +195,6 @@ class DB
 			@mysql_free_result( $result );
 		}
 		if ($ret) Cache::Set($mkey, $ret, 0, $cache);
-		//print_r($ret);
 		return $ret;
 	}
 
@@ -273,7 +264,6 @@ class DB
 
 		$sql = "UPDATE `$table` SET ";
 		$content = null;
-		print_r($updaterow);
 		foreach ( $updaterow as $k => $v )
 		{
 			$v_str = null;

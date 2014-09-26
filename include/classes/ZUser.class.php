@@ -97,7 +97,6 @@ class ZUser
 					$field => $email,
 					'password' => $password,
 		));
-		//print_r($zuituuser);die();
 		if ($zuituuser)  return $zuituuser;
 		if (function_exists('zuitu_uc_login')) {
 			return zuitu_uc_login($email, $unpass);
