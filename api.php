@@ -151,19 +151,21 @@ elseif($_REQUEST['act'] == 'signup')
 
 else {	
 	//用户验证
-	$userid = intval($_REQUEST['userid']);
-	$username = $_REQUEST['username'];
-	$password = $_REQUEST['password'];
+	//$userid = intval($_REQUEST['userid']);
+	$username = addslashes($_REQUEST['username']);
+	$password = addslashes($_REQUEST['password']);
 	
 	$condition['username'] = $username;
 	$condition['password'] = $password;
 	$userinfo = DB::GetTableRow("user", $condition,false);
+	
+	//print_r($condition);die();
 	if($userinfo == null)
 	{
 		$result = array('code'=>99,'message'=>'用户验证失败，请重新登录');
 		echo json_encode($result); exit();
 	}
-
+	$userid = $userinfo[0]['id'];
 	if( $_REQUEST['act']=='login')
 	{
 		$result = array('code'=>0,'message'=>'登录成功','data'=>$userinfo['id']);
