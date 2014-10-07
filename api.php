@@ -165,8 +165,8 @@ else {
 		$result = array('code'=>99,'message'=>'用户验证失败，请重新登录');
 		echo json_encode($result); exit();
 	}
-	$userid = $userinfo[0]['id'];
-	print_r($userinfo);
+	$userid = $userinfo['id'];
+	//print_r($userinfo);
 	if( $_REQUEST['act']=='login')
 	{
 		$result = array('code'=>0,'message'=>'登录成功','data'=>$userinfo['id']);
