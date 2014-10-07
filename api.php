@@ -166,6 +166,7 @@ else {
 		echo json_encode($result); exit();
 	}
 	$userid = $userinfo[0]['id'];
+	print_r($userinfo);
 	if( $_REQUEST['act']=='login')
 	{
 		$result = array('code'=>0,'message'=>'登录成功','data'=>$userinfo['id']);
