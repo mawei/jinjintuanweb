@@ -131,7 +131,9 @@ elseif($_REQUEST['act']=='getlocation')
 		$locationInfo = BaiduMapApi::getAddressByLocation($location['x'], $location['y']);
 		if($locationInfo['status'] == 0)
 		{
-			$result = array('code'=>0,'message'=>'获取成功',data=>$locationInfo);
+			$lng = (string)$locationInfo["location"]["lng"];
+			$lat = (string)$locationInfo["location"]["lat"];
+			$result = array('code'=>0,'message'=>'获取成功',data=>array("address"=>$locationInfo["formatted_address"],"longitude"=>$lng,"latitude"=>$lat));
 		}
 	}
 }
