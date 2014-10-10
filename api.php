@@ -6,6 +6,7 @@ if(isset($_GET['sessionid']))
 }
 
 require_once(dirname(__FILE__) . '/app.php');
+require_once(dirname(__FILE__) . '/baiduMapApi.php');
 
 
 if($_REQUEST['act'] == 'getSessionId')
@@ -107,17 +108,34 @@ elseif($_REQUEST['act']=='lottery')
 
 elseif($_REQUEST['act']=='lbsteams')
 {
-	$long = $_REQUEST['long'];
-	$lat = $_REQUEST['lat'];
-	$type = $_REQUEST['type'];
-	$tags = $_REQUEST['tags'];
-	$sortby = $_REQUEST['sortby'];
-	$pageIndex = $_REQUEST['pageIndex'];
-	$pageSize = $_REQUEST['pageSize'];
+	$long = addslashes($_REQUEST['longitude']);
+	$lat = addslashes($_REQUEST['latitude']);
+	$type = addslashes($_REQUEST['type']);
+	$tags = addslashes($_REQUEST['tags']);
+	$sortby = addslashes($_REQUEST['sortby']);
+	$pageIndex = addslashes($_REQUEST['pageIndex']);
+	$pageSize = addslashes($_REQUEST['pageSize']);
 	
-	$teams = BaiduMapApi::getTeams($long, $lat, $type, $radius, $tags, $sortby, $pageIndex, $pageSize);
+	$teams = BaiduMapApi::getTeams($long, $lat,$type, 5000, $tags, $sortby, $pageIndex, $pageSize);
 	$result = array('code'=>0,'message'=>'获取成功',data=>$team);
 }
+
+elseif($_REQUEST['act']=='getlocation')
+{
+	$longitude = addslashes($_REQUEST['longitude']);
+	$latitude = addslashes($_REQUEST['latitude']);
+	$location = BaiduMapApi::convertWGStoBDLoaction($longitude, $latitude);
+	$result = array('code'=>1,'message'=>'获取失败');
+	if($location != "")
+	{
+		$locationInfo = BaiduMapApi::getAddressByLocation($location['x'], $location['y']);
+		if($locationInfo['status'] == 0)
+		{
+			$result = array('code'=>0,'message'=>'获取成功',data=>$locationInfo);
+		}
+	}
+}
+
 
 
 elseif($_REQUEST['act'] == 'signup')
@@ -195,6 +213,7 @@ else {
 	//订单
 	elseif ($_REQUEST['act']=='orders') {
 		$selector = strval($_GET['s']);
+		$orderid = intval($_GET['orderid']);
 		$where = "";
 		
 		if ( $selector == 'index' ) {
@@ -207,6 +226,9 @@ else {
 		}
 		else if ( $selector == 'refund' ) {
 			$where .=  " and t1.state='pay' and t1.allowrefund='Y'";
+		}
+		else if ( $orderid > 0 ) {
+			$where .= " and t1.id={$orderid}";
 		}
 		list($pagesize, $offset, $pagestring) = pagestring($count, 10);
 		$sql = "SELECT t1.id,t1.team_id,t1.state,t1.quantity,t1.price,t1.create_time,t2.title FROM `order` t1 left join `team` t2 on t1.team_id=t2.id WHERE t1.user_id=$userid".$where;
