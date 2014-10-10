@@ -32,16 +32,13 @@ class BaiduMapApi
 			array_push($teams, $t);
 			array_push($ids, (int)$d['team_id']);
 		}
-		$idsstring = implode(",", $ids);
-// 		$select = 'id,title,product,team_price,market_price,image,now_number';
-// 		$condition = array('id'=>$ids);
-// 		$dbteams = DB::LimitQuery('team', array(
-// 				'condition' => $condition,
-// 				'select' => $select
-// 		));
-		$sql = "select t1.*,t2.title as partnername,t2.address as partneraddress,t2.phone as partnerphone from `team` t1 left join `partner` t2 on t1.partner_id=t2.id where t1.id in ({$idsstring})";
-		$dbteams = DB::GetQueryResult($sql);
-		
+		$select = 'id,title,product,team_price,market_price,image,now_number';
+		$condition = array('id'=>$ids);
+		$dbteams = DB::LimitQuery('team', array(
+				'condition' => $condition,
+				'select' => $select
+		));
+				
 		foreach($teams as $k=>$v)
 		{
 			$dbteams[$k]['distance'] = $teams[$k]['distance'];
