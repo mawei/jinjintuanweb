@@ -117,7 +117,7 @@ elseif($_REQUEST['act']=='lbsteams')
 	$pageSize = addslashes($_REQUEST['pageSize']);
 	
 	$teams = BaiduMapApi::getTeams($long, $lat,$type, 5000, $tags, $sortby, $pageIndex, $pageSize);
-	$result = array('code'=>0,'message'=>'获取成功',data=>$team);
+	$result = array('code'=>0,'message'=>'获取成功',data=>$teams);
 }
 
 elseif($_REQUEST['act']=='getlocation')
