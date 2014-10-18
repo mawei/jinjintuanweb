@@ -128,7 +128,7 @@ elseif($_REQUEST['act'] == 'lbsteamsbysql')
 	$condition['team_type'] = "seconds";
 	$sql = "select t1.id,t1.title,t1.product,t1.team_price,t1.market_price,t1.image,t1.now_number, 
 sqrt(POW((6370693.5 * cos({$lat} * 0.01745329252) * ({$long} * 0.01745329252 - right(t2.longlat,15) * 0.01745329252)),2) + POW((6370693.5 * ({$lat} * 0.01745329252 - left(t2.longlat,15) * 0.01745329252)),2)) as 'distance' 
-from `team` t1 left join `partner` T2 on t1.partner_id = t2.id 
+from `team` t1 left join `partner` t2 on t1.partner_id = t2.id 
 left join `category` t3 on t3.id = t1.group_id 
 where t1.end_time>unix_timestamp(now())";
 	if($category != "")
@@ -141,7 +141,7 @@ where t1.end_time>unix_timestamp(now())";
 // 			'select' => $select,
 // 			'order' => 'ORDER BY id DESC'
 // 	));
-//echo $sql;
+echo $sql;
 	$teams = DB::GetQueryResult($sql,false);
 	if($teamID > 0)
 	{
