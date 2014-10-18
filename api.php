@@ -135,7 +135,7 @@ where t1.end_time>unix_timestamp(now())";
 	{
 		$sql .=	" and t3.name='{$category}' ";
 	}
-	$sql .= " and t1.team_type='{$team_type}' order by {$sortby} asc";
+	$sql .= " and t1.team_type='{$team_type}' order by {$sortby}";
 // 	$teams = DB::LimitQuery('team', array(
 // 			'condition' => $condition,
 // 			'select' => $select,
