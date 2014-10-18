@@ -141,7 +141,7 @@ where t1.end_time>unix_timestamp(now())";
 // 			'select' => $select,
 // 			'order' => 'ORDER BY id DESC'
 // 	));
-echo $sql;
+//echo $sql;
 	$teams = DB::GetQueryResult($sql,false);
 	if($teamID > 0)
 	{
