@@ -98,10 +98,10 @@ window.x_init_hook_gm = function() {
 						</div>
 						<div class="field">
                             <label>地图坐标</label>
-                            <input type="text" size="30" name="longlat" style="width:300px;cursor:point;" class="f-input f-hint" id="inputlonglat" readonly value="<?php echo $partner['longlat']; ?>" /><span class="inputtip">
-                            <input type="button" onclick="doOptions()" value="获取坐标" />
+                            <input type="text" size="30" name="longlat" style="width:300px;cursor:point;" class="f-input f-hint" id="inputlonglat" value="<?php echo $partner['longlat']; ?>" /><span class="inputtip">
+                            <!-- <input type="button" onclick="doOptions()" value="获取坐标" />
                             <a href="javascript:;" style="cursor:point;" onclick="jQuery('#inputlonglat').val('');">取消地图坐标信息</a></span>
-						</div>
+						 --></div>
                         <div class="field">
                             <label>联系电话</label>
                             <input type="text" size="30" name="phone" id="partner-create-phone" class="f-input f-hint" value="<?php echo $partner['phone']; ?>" maxLength="18" require="true" datatype="require" />

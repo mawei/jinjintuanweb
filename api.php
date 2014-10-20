@@ -115,7 +115,7 @@ elseif($_REQUEST['act'] == 'lbsteamsbysql')
 	$lat = addslashes($_REQUEST['latitude']) == "" ? "30.74799" : addslashes($_REQUEST['latitude']);
 	$team_type = addslashes($_REQUEST['team_type']) == "" ? "normal" : addslashes($_REQUEST['team_type']);
 	$category = addslashes($_REQUEST['category']);
-	$sortby = addslashes($_REQUEST['sortby']);
+	$sortby = addslashes($_REQUEST['sortby']) == "" ? "now_number desc" : addslashes($_REQUEST['sortby']);
 	$pageIndex = addslashes($_REQUEST['pageIndex']);
 	$pageSize = addslashes($_REQUEST['pageSize']);
 	
@@ -127,25 +127,25 @@ elseif($_REQUEST['act'] == 'lbsteamsbysql')
 	}
 	$condition['team_type'] = "seconds";
 	$sql = "select t1.id,t1.title,t1.product,t1.team_price,t1.market_price,t1.image,t1.now_number, 
-sqrt(POW((6370693.5 * cos({$lat} * 0.01745329252) * ({$long} * 0.01745329252 - right(t2.longlat,15) * 0.01745329252)),2) + POW((6370693.5 * ({$lat} * 0.01745329252 - left(t2.longlat,15) * 0.01745329252)),2)) as 'distance' 
+sqrt(POW((6370693.5 * cos({$lat} * 0.01745329252) * ({$long} * 0.01745329252 - t2.longitude * 0.01745329252)),2) + POW((6370693.5 * ({$lat} * 0.01745329252 - t2.latitude * 0.01745329252)),2)) as 'distance' 
 from `team` t1 left join `partner` t2 on t1.partner_id = t2.id 
 left join `category` t3 on t3.id = t1.group_id 
 where t1.end_time>unix_timestamp(now())";
-	if($category != "")
+	if($category != "" && $category != "全部" && $category != "全部分类")
 	{
 		$sql .=	" and t3.name='{$category}' ";
 	}
 	$sql .= " and t1.team_type='{$team_type}' order by {$sortby}";
-// 	$teams = DB::LimitQuery('team', array(
-// 			'condition' => $condition,
-// 			'select' => $select,
-// 			'order' => 'ORDER BY id DESC'
-// 	));
-//echo $sql;
+	if(addslashes($_REQUEST['page']) != "" && addslashes($_REQUEST['size']) != "")
+	{
+		$startIndex = addslashes($_REQUEST['page']) * addslashes($_REQUEST['size']);
+		$sql .= " limit {$startIndex},{$size}";
+	}
+		
 	$teams = DB::GetQueryResult($sql,false);
 	if($teamID > 0)
 	{
-		$sql = "select t1.*,t2.title as partnername,t2.address as partneraddress,t2.phone as partnerphone from `team` t1 left join `partner` t2 on t1.partner_id=t2.id where t1.id=$teamID";
+		$sql = "select t1.*,t2.title as partnername,t2.address as partneraddress,t2.phone as partnerphone from `team` t1 left join `partner` t2 on t1.partner_id=t2.id where t1.id=$teamID ";
 		$teams = DB::GetQueryResult($sql);
 	}
 	$result = array('code'=>0,'message'=>'获取成功',data=>$teams);	

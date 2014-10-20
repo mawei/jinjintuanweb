@@ -136,8 +136,8 @@ else if ( is_post() ) {
 		log_admin('team', '编辑team项目',$insert);
 		Session::Set('notice', '编辑项目信息成功');
 		
-		$sync = new SyncTeam();
-		$sync->updateById($team);
+		//$sync = new SyncTeam();
+		//$sync->updateById($team);
 		redirect( WEB_ROOT . "/manage/team/index.php");
 	} 
 	else if ( $team['id'] ) {
@@ -149,8 +149,8 @@ else if ( is_post() ) {
 	if ( $table->insert($insert) ) {
 		log_admin('team', '新建team项目',$insert);
 		Session::Set('notice', '新建项目成功');
-		$sync = new SyncTeam();
-		$sync->updateById($team);
+		//$sync = new SyncTeam();
+		//$sync->updateById($team);
 		redirect( WEB_ROOT . "/manage/team/index.php");
 	}
 	else {
