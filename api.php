@@ -109,10 +109,12 @@ elseif($_REQUEST['act']=='lottery')
 //sort by:market_price,distance
 elseif($_REQUEST['act'] == 'lbsteamsbysql')
 {
+	//print_r(fl("1.345678901234567"));
+	
 	$cityID = intval($_REQUEST['cityid']);
 	$teamID = intval($_REQUEST['teamid']);
-	$long = addslashes($_REQUEST['longitude']) == "" ? "121.348902" : addslashes($_REQUEST['longitude']);
-	$lat = addslashes($_REQUEST['latitude']) == "" ? "30.74799" : addslashes($_REQUEST['latitude']);
+	$long = doubleval(addslashes($_REQUEST['longitude'])) == 0 ? "121.348902" : addslashes($_REQUEST['longitude']);
+	$lat = doubleval(addslashes($_REQUEST['latitude'])) == 0 ? "30.74799" : addslashes($_REQUEST['latitude']);
 	$team_type = addslashes($_REQUEST['team_type']) == "" ? "normal" : addslashes($_REQUEST['team_type']);
 	$category = addslashes($_REQUEST['category']);
 	$sortby = addslashes($_REQUEST['sortby']) == "" ? "now_number desc" : addslashes($_REQUEST['sortby']);
