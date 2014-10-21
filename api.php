@@ -280,7 +280,7 @@ else {
 			$where .= " and t1.id={$orderid}";
 		}
 		list($pagesize, $offset, $pagestring) = pagestring($count, 10);
-		$sql = "SELECT t1.id,t1.team_id,t1.state,t1.quantity,t1.price,t1.create_time,t2.title FROM `order` t1 left join `team` t2 on t1.team_id=t2.id WHERE t1.user_id=$userid".$where;
+		$sql = "SELECT t1.id,t1.team_id,t1.state,t1.quantity,t1.price,t1.create_time,t2.title,t2.image FROM `order` t1 left join `team` t2 on t1.team_id=t2.id WHERE t1.user_id=$userid".$where;
 		$orders = DB::GetQueryResult($sql,false);
 		$result = array('code'=>0,'message'=>'获取成功','data'=>$orders);
 	}
