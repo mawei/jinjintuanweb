@@ -1,6 +1,6 @@
 *.bak
+/include/compiled/*
 /include/configure/*
 .buildpath
 .project
 .settings/*
-include/compiled/*

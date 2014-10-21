@@ -128,7 +128,7 @@ elseif($_REQUEST['act'] == 'lbsteamsbysql')
 		$condition["city_id"] = $cityID;
 	}
 	$condition['team_type'] = "seconds";
-	$sql = "select t1.id,t1.title,t1.product,t1.team_price,t1.market_price,t1.image,t1.now_number, 
+	$sql = "select t1.id,t1.title,t1.product,t1.team_price,t1.market_price,t1.image,t1.now_number, t2.title as partnername,t1.summary,
 sqrt(POW((6370693.5 * cos({$lat} * 0.01745329252) * ({$long} * 0.01745329252 - t2.longitude * 0.01745329252)),2) + POW((6370693.5 * ({$lat} * 0.01745329252 - t2.latitude * 0.01745329252)),2)) as 'distance' 
 from `team` t1 left join `partner` t2 on t1.partner_id = t2.id 
 left join `category` t3 on t3.id = t1.group_id 
