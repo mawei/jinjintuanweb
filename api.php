@@ -333,7 +333,6 @@ else {
 	
 	//更新用户信息
 	elseif ($_REQUEST['act']=='updateuser') {	
-		$update['id'] = $_REQUEST['id'];
 		$update['realname'] = $_REQUEST['realname'];
 		$update['zipcode'] = $_REQUEST['zipcode'];
 		$update['address'] = $_REQUEST['address'];
