@@ -314,10 +314,12 @@ else {
 		$order['team_id'] = $_REQUEST['team_id'];
 		$order['id'] = $_REQUEST['order_id'];
 		$order['quantity'] = $_REQUEST['quantity'];
+		$order['user_id'] = $userid;
 		
 		$coupon_array = array('coupon', 'pickup');
 		$team = Table::FetchForce('team', $order['team_id']);
 		if (!in_array($team['delivery'], $coupon_array)) return;
+		
 		if ( $team['now_number'] >= $team['min_number'] && $team['now_number'] <= $team['max_number']) {
 			//init coupon create;
 // 			$last = ($team['conduser']=='Y') ? 1 : $order['quantity'];
@@ -335,9 +337,10 @@ else {
 // 			}
 // 			else{
 // 			}
+				
 			ZCoupon::Create($order);
 			$result = array('code'=>0,'message'=>'成功生成优惠券');				
-		}else{
+		}else{				
 			$result = array('code'=>1,'message'=>'册那，被别人抢先一步了');
 		}	
 	}
