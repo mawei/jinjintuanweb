@@ -320,22 +320,22 @@ else {
 		if (!in_array($team['delivery'], $coupon_array)) return;
 		if ( $team['now_number'] >= $team['min_number'] && $team['now_number'] <= $team['max_number']) {
 			//init coupon create;
-			$last = ($team['conduser']=='Y') ? 1 : $order['quantity'];
-			$offset = max(5, $last);
-			if ( $team['now_number'] - $team['min_number'] < $last) {
-				$orders = DB::LimitQuery('order', array(
-						'condition' => array(
-								'team_id' => $order['team_id'],
-								'state' => 'pay',
-						),
-				));
-				foreach($orders AS $order) {
-					ZCoupon::Create($order);
-				}
-			}
-			else{
-				ZCoupon::Create($order);
-			}
+// 			$last = ($team['conduser']=='Y') ? 1 : $order['quantity'];
+// 			$offset = max(5, $last);
+// 			if ( $team['now_number'] - $team['min_number'] < $last) {
+// 				$orders = DB::LimitQuery('order', array(
+// 						'condition' => array(
+// 								'team_id' => $order['team_id'],
+// 								'state' => 'pay',
+// 						),
+// 				));
+// 				foreach($orders AS $order) {
+// 					ZCoupon::Create($order);
+// 				}
+// 			}
+// 			else{
+// 			}
+			ZCoupon::Create($order);
 			$result = array('code'=>0,'message'=>'成功生成优惠券');				
 		}else{
 			$result = array('code'=>1,'message'=>'册那，被别人抢先一步了');
