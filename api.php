@@ -135,7 +135,7 @@ left join `category` t3 on t3.id = t1.group_id
 where t1.end_time>unix_timestamp(now())";
 	if($category != "" && $category != "全部" && $category != "全部分类")
 	{
-		$sql .=	" and t3.name='{$category}' ";
+		$sql .=	" and t3.name='{$category}'";
 	}
 	$sql .= " and t1.team_type='{$team_type}' order by {$sortby}";
 	if(addslashes($_REQUEST['page']) != "" && addslashes($_REQUEST['size']) != "")
