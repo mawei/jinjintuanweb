@@ -110,7 +110,8 @@ elseif($_REQUEST['act']=='lottery')
 elseif($_REQUEST['act'] == 'lbsteamsbysql')
 {
 	//print_r(fl("1.345678901234567"));
-	
+	echo $category + "aaaa";
+	print_r(getallheaders()); die();
 	$cityID = intval($_REQUEST['cityid']);
 	$teamID = intval($_REQUEST['teamid']);
 	$long = doubleval(addslashes($_REQUEST['longitude'])) == 0 ? "121.348902" : addslashes($_REQUEST['longitude']);
