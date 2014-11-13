@@ -12,6 +12,7 @@ $currefer = uencode(strval($_SERVER['REQUEST_URI']));
 /* session,cache,configure,webroot register */
 Session::Init();
 $INI = ZSystem::GetINI();
+
 /* end */
 
 /* date_zone */
@@ -45,3 +46,4 @@ if (false==$AJAX) {
 } else {
 	header("Cache-Control: no-store, no-cache, must-revalidate");
 }
+//自动人数触发

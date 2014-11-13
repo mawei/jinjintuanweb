@@ -15,6 +15,7 @@ class ZSystem
 			$INI = Config::MergeINI($INI, $SYS);
 		}
 		$INI = ZSystem::WebRoot();
+		
 		return self::BuildINI($INI);
 	}
 
@@ -43,7 +44,7 @@ class ZSystem
 			$INI['webroot'] = $m[1];
 			save_config('php');
 		}
-
+		
 		if (isset($INI['webroot'])) {
 			define('WEB_ROOT', $INI['webroot']);
 		} else {

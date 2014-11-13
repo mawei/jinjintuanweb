@@ -1,0 +1,32 @@
+<!--{include header}-->
+
+<div class="wrap">
+        <div class="uleft c3" id="uleft_ev56">
+<h2 id="uctit">用户中心</h2>
+<h3>交易管理</h3>
+<ul>${current_account('/credit/score.php')}</ul>
+
+<a class="faq" href="/help/faqs.php" target="_blank">常见问题&gt;&gt;</a>
+</div>  <div class="uright" id="credit">
+    <div class="utit">
+      <ul>
+	  ${current_credit_index('score')}
+      </ul>
+      <h2>积分余额</h2>
+    </div>
+    <div class="sect">
+					<p class="charge">积分规则：&nbsp;&nbsp;&nbsp;<span>&raquo;</span>&nbsp;用户注册：+${abs(intval($INI['credit']['register']))}&nbsp;&nbsp;&nbsp;<span>&raquo;</span>&nbsp;用户登录：+${abs(intval($INI['credit']['login']))}&nbsp;&nbsp;&nbsp;<span>&raquo;</span>&nbsp;参与团购：+${abs(intval($INI['credit']['buy']))}&nbsp;&nbsp;&nbsp;<span>&raquo;</span>&nbsp;邀请好友：+${abs(intval($INI['credit']['invite']))}&nbsp;&nbsp;&nbsp;<span>&raquo;</span>&nbsp;购买返积比例：${moneyit($INI['credit']['pay'])}&nbsp;&nbsp;&nbsp;<span>&raquo;</span>&nbsp;充值返积比例：${moneyit($INI['credit']['charge'])}</p>
+					<h3 class="credit-title">当前的账户积分是：<strong>${moneyit($login_user['score'])}</strong></h3>
+					<table id="order-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+						<tr><th width="120">时间</th><th width="auto">详情</th><th width="50">收支</th><th width="70">积分</th></tr>
+						<!--{loop $credits $index $one}-->
+						<tr ${$index%2?'':'class="alt"'}><td style="text-align:left;">${date('Y-m-d H:i', $one['create_time'])}</td><td>${ZCredit::Explain($one)}</td><td class="{$one['direction']}">${$one['score']>0?'收入':'支出'}</td><td>${moneyit($one['score'])}</td></tr>
+						<!--{/loop}-->
+						<tr><td colspan="4">{$pagestring}</td></tr>
+                    </table>
+				</div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+<!--{include footer}-->

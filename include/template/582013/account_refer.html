@@ -1,0 +1,41 @@
+<!--{include header}-->
+
+<div class="wrap">
+        <div class="uleft c3" id="uleft_ev56">
+<h2 id="uctit">用户中心</h2>
+<h3>交易管理</h3>
+<ul>${current_account('/account/refer.php')}</ul>
+
+<a class="faq" href="/help/faqs.php" target="_blank">常见问题&gt;&gt;</a>
+</div>  <div class="uright" id="uright_ev56">
+    <div class="utit">
+      <ul>
+	 ${current_invite('refer')}
+      </ul>
+      <h2>我的邀请</h2>
+    </div>
+    <div class="sect">
+					<div class="share-list">
+						<div class="blk im">
+							<div class="logo"><img src="/static/theme/58/css/i/logo_qq.gif" /></div>
+							<div class="info">
+								<h4>这是您的专用邀请链接，请通过 MSN 或 QQ 发送给好友：</h4>
+								<input id="share-copy-text" type="text" value="{$INI['system']['wwwprefix']}/r.php?r={$mail}" size="35" class="f-input" onfocus="this.select()" tip="复制成功，可以通过 MSN 或 QQ 发送给好友了" />
+								<input id="share-copy-button" type="button" value="复制" class="formbutton" />
+							</div>
+						</div>
+					</div>
+
+					<table cellspacing="0" cellpadding="0" border="0" class="coupons-table">
+					<tr><th width="200">用户</th><th width="200">邀请时间</th><th width="200">状态</th></tr>
+					<!--{loop $invites $index $one}-->
+						<tr ${$index%2?'':'class="alt"'}><td>{$users[$one['other_user_id']]['username']}</td><td>${date('Y年m月d日 H:i', $one['create_time'])}</td><td>${invite_state($one)}</td></tr>
+					<!--{/loop}-->
+						<tr><td colspan="3">{$pagestring}</td></tr>
+					</table>
+				</div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+<!--{include footer}-->

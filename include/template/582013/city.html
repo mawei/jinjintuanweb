@@ -1,0 +1,18 @@
+<!--{include header}-->
+
+<div class="wrap2" id="citylist">
+  <p><span class="c2">选择你所在的城市>></span></p>                                          
+<div class="hotcity">立即邮件订阅每日团购信息，不错过每一天的惊喜。</div>
+  <div class="citysear">把每天最新的精品团购信息发到您的邮箱。<a class="input input2" href="/subscribe.php?ename={$city['ename']}">订阅</a></div>
+  <div class="clist">
+    <h2>按城市拼音首字母选择：</h2>
+    <dl>
+	<!--{loop $cities $letter $ones}-->
+      <dt>{$letter}.</dt>
+      <dd><!--{loop $ones $one}--><a href="/city.php?ename={$one['ename']}">{$one['name']}</a><!--{/loop}--></dd>
+	<!--{/loop}-->
+    </dl>
+  </div>
+  <div class="clear"></div>
+</div>
+<!--{include footer}-->

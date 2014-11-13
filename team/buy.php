@@ -28,7 +28,6 @@ if ($team['delivery'] == 'express') {
 	$def = DB::LimitQuery('address',array(
 		'condition' => array('user_id'=>$login_user_id,'default'=>'Y'),
 	));
-
 }
 
 //whether buy
@@ -37,8 +36,10 @@ $ex_con = array(
 		'team_id' => $team['id'],
 		'state' => 'unpay',
 		);
+		$con_old=$ex_con;
+$con_old[]="service !='hdfk'";
 $order = DB::LimitQuery('order', array(
-	'condition' => $ex_con,
+    'condition' =>$con_old,
 	'one' => true,
 ));
 

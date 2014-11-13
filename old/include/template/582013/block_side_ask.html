@@ -1,0 +1,53 @@
+﻿<!--${
+	$ask_con = array('length(comment)>0');
+	if(option_yes('teamask')) { $ask_con[] = 'team_id > 0'; } 
+	else { $ask_con['team_id'] = $id; }
+	$ask_count = Table::Count('ask', $ask_con);
+	$asks = DB::LimitQuery('ask', array('condition'=>$ask_con, 'size'=>3, 'order'=>'ORDER BY id DESC'));
+}-->
+<style type="text/css">
+<!--
+.STYLE1 {
+	color: #990000;
+	font-weight: bold;
+}
+-->
+</style>
+
+
+<div class="rbox b15" id="questions">
+   <h3><a class="tousu" href="/feedback/suggest.php" title="我要投诉建议">投诉建议</a>答疑转让 </h3>
+  <ul class="wzlist c3">
+    <li class="dytit"><a href="/team/ask.php?id={$team['id']}">查看全部({$ask_count})</a><a href="/team/ask.php?id={$team['id']}#post" class="ico guest">我要提问</a><a href="/team/transfer.php?id={$team['id']}" class="ico guest">求购转让</a></li>
+			<!--{loop $asks $one}-->
+            <li><a href="/team/ask.php?id={$team['id']}#ask-entry-{$one['id']}" title="{$one['content']}">${htmlspecialchars(mb_substr($one['content'],0,30,'UTF-8'))}...</a></li>
+			<!--{/loop}-->
+              </ul>
+			<div class="custom-service">
+				<p class="im">
+<!--${
+	$msns = preg_split('/[,\s]+/',$INI['system']['kefumsn'],-1,PREG_SPLIT_NO_EMPTY);
+	$qqs = preg_split('/[,\s]+/',$INI['system']['kefuqq'],-1,PREG_SPLIT_NO_EMPTY);
+}-->
+				<!--{loop $msns $msnone}-->
+				<!--{if trim($msnone)}-->
+
+                <a target="_blank" href="http://amos.alicdn.com/getcid.aw?v=2&uid={$msnone}&site=cntaobao&s=1&groupid=0&charset=utf-8"><img border="0" src="http://amos.alicdn.com/online.aw?v=2&uid={$msnone}&site=cntaobao&s=1&charset=utf-8" alt="点击这里给我发消息" /></a>
+                
+									<!--{/if}-->
+				<!--{/loop}-->
+				<!--{loop $qqs $qqone}-->
+				<!--{if preg_match('/http/i', $qqone)}-->
+					{$qqone}
+				<!--{else}-->
+					<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$qqone}&site={$INI['system']['sitename']}&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{$qqone}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+				<!--{/if}-->
+
+
+
+				<!--{/loop}-->
+				</p>
+			</div>
+  <p class="sphone"><b>客服电话：</b>  <span class="STYLE1">400-800-5823</span>  <br />
+  <b>工作时间：</b> 9:00-21:00 (每天) </p>
+</div>

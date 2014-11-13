@@ -27,7 +27,7 @@ if (empty($_FILES) === false) {
 	if (!move_uploaded_file($tmp_name, $file_path)) {
 		alert("上传文件失败");
 	}
-	Image::convert($file_path, $file_path, 440);
+	Image::convert($file_path, $file_path, 680);
 	@chmod($file_path, 0644);
 
 	$file_url = $INI['system']['imgprefix'] . "/static/team/{$year}/{$day}/". $new_file_name;

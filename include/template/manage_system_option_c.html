@@ -1,4 +1,4 @@
-<!--{include manage_header}-->
+﻿<!--{include manage_header}-->
 
 <div id="bdw" class="bdw">
 <div id="bd" class="cf">
@@ -50,7 +50,7 @@
                             <label>首次登录绑定</label>
 							<select name="option[firstqqlogin]" style="float:left;">${Utility::Option($option_yn, option_yesv('firstqqlogin'))}</select><span class="inputtip">是否开启首次用腾讯微博账号登录后绑定(或新建)账号</span>
                         </div>
-						<div class="wholetip clear"><h3>3、QQ空间登录</h3></div>
+						<!---<div class="wholetip clear"><h3>3、QQ空间登录</h3></div>
 						<div class="field">
                             <label>App ID</label>
                             <input type="text" size="30" name="qzone[key]" class="f-input" value="{$INI['qzone']['key']}" style="width:300px;"/><span class="inputtip"><a href="http://connect.opensns.qq.com/" target="_blank">申请网站APP key</a></span>
@@ -66,7 +66,7 @@
                         <div class="field">
                             <label>首次登录绑定</label>
 							<select name="option[firstqzonelogin]" style="float:left;">${Utility::Option($option_yn, option_yesv('firstqzonelogin'))}</select><span class="inputtip">是否开启首次用QQ空间登录后绑定(或新建)账号</span>
-                        </div>
+                        </div>--->
 						<div class="act">
                             <input type="submit" value="保存" name="commit" class="formbutton" />
                         </div>

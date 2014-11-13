@@ -36,6 +36,9 @@ elseif ( $action == 'orderdel') {
 	if ( $order['state'] != 'unpay' ) {
 		json('付款订单不能删除', 'alert');
 	}
+	if ( $order['service']=='hdfk') {
+		json('货到付款订单不能删除', 'alert');
+	}	
     /* card refund */
 	if ( $order['card_id'] ) {
 		Table::UpdateCache('card', $order['card_id'], array(

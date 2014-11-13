@@ -27,16 +27,51 @@
 						<select name="team_type" class="f-input" style="width:160px;" onchange="X.team.changetype(this.options[this.options.selectedIndex].value);">${Utility::Option($option_teamtype, $team['team_type'])}</select>
 						<select name="group_id" onchange="changecate(this.options[this.options.selectedIndex].value);" class="f-input" style="width:160px;">${Utility::Option($groups, $team['group_id'])}</select>
                         <select name="sub_id" class="f-input" id="sub_id" style="width:160px;"><option value="0">选择细分类</option>${Utility::Option($level_groups, $team['sub_id'])}</select>
-					</div>
-					<div class="field">
-						<label>项目城市</label>
+					</div>	
+					
+                     <div class="field" style="padding-left:46px;">
+                        <p>项目标签：
+                           <!--{if $team['team_tags'] == 1}-->
+                             <input type="checkbox" name="team_tags[]" value="1" checked="checked" />今日新单
+                             <input type="checkbox" name="team_tags[]" value="2" />免预约
+                          <!--{elseif $team['team_tags'] == 2}-->  
+                             <input type="checkbox" name="team_tags[]" value="1" />今日新单
+                             <input type="checkbox" name="team_tags[]" value="2" checked="checked" />免预约
+                          <!--{elseif $team['team_tags'] == 12}-->  
+                             <input type="checkbox" name="team_tags[]" value="1" checked="checked" />今日新单
+                             <input type="checkbox" name="team_tags[]" value="2" checked="checked" />免预约
+                          <!--{else}-->   
+                             <input type="checkbox" name="team_tags[]" value="1" />今日新单
+                             <input type="checkbox" name="team_tags[]" value="2" />免预约
+                          <!--{/if}-->
+                        </p>
+                    </div>
+                    
+					<div class="field" style="padding-left:46px;">
+						<p>项目城市
 						<input type="hidden" name="city_id" value="{$team['city_id']}">
-						<span style="width:80px;float:left;"><input type="checkbox" id="city_all" name="city_ids[]" value="0" <!--{if $team['city_id'] == 0}-->checked<!--{/if}-->/>全部</span>
+						<span style="width:80px;"><input type="checkbox" id="city_all" name="city_ids[]" value="0" <!--{if $team['city_id'] == 0}-->checked<!--{/if}-->/>全部</span>
+					    </p>
+                        <div style="padding-left:60px;">					
 						<!--{loop $allcities $index $one}-->
-							<span style="width:80px;float:left;">
+							<p>
 								<input type="checkbox" class="city_checkbox" name="city_ids[]" value="{$one['id']}" <!--{if $team['city_id'] == $one['id'] or preg_match("/@".$one['id']."@/i", $team['city_ids']) or $team['city_id']==0}-->checked<!--{/if}-->/>{$one['name']}
-							</span>
+								<!--{if isset($one['id'])}-->
+								   <!--${
+								        $areas = get_areas($one['id']);
+								   }-->
+								  （<b>商圈：</b>
+									<!--{if $areas}-->
+									   <!--{loop $areas $index $two}-->
+									        <input type="checkbox" class="city_checkbox" name="area_ids[]" value="{$two['id']}"
+											<!--{if preg_match("/@".$two['id']."@/i", $team['area_ids'])}-->checked<!--{/if}--> />{$two['name']}
+									   <!--{/loop} -->
+									 ）
+	                                <!--{/if}--> 
+								<!--{/if}--> 
+							</p>
 						<!-- {/loop} -->
+						</div>
 					</div>
 					<div class="field" id="field_limit">
 						<label>限制条件</label>
@@ -78,8 +113,17 @@
 					<div class="field">
 						<label>允许退款</label>
 
-								<input type="checkbox" class="allowrefund" name="allowrefund" value="Y" <!--{if $team['allowrefund']=='Y'}-->checked<!--{/if}-->/>&nbsp;是&nbsp;&nbsp;<span style="font-size:12px;color:#989898;">本项目允许用户发起 申请退款</span>						 
+								<input type="checkbox" class="allowrefund" name="allowrefund" value="Y" <!--{if $team['allowrefund']=='Y'}-->checked<!--{/if}--> />&nbsp;是&nbsp;&nbsp;<span style="font-size:12px;color:#989898;">本项目允许用户发起 申请退款</span>						 
 					</div>
+					<div class="field">
+					<label>货到付款</label>
+						<input type="checkbox" class="is_hdfk" name="is_hdfk" value="1" 
+
+<!--{if $team['is_hdfk']=='1'}-->checked<!--{/if}-->/>&nbsp;是&nbsp;&nbsp;<span style="font-
+
+size:12px;color:#989898;">本项目是否支持货到付款</span>						 
+					</div>
+                    <!--货到付款end-->
 					<div class="field">
 						<label>本单简介</label>
 						<div style="float:left;"><textarea cols="45" rows="5" name="summary" id="team-create-summary" class="f-textarea" datatype="require" require="true">${htmlspecialchars($team['summary'])}</textarea></div>
@@ -260,11 +304,12 @@ $(function(){
 	});
 
 });
+
 function changecate(cid) {
 	$.get("category.php",{
 		'cateid':cid
 		},function(data){
-			$("#sub_id").load('category.php?cateid='+cid );
+		    $("#sub_id").load('category.php?cateid='+cid );
 		});
 }
 </script>

@@ -1,0 +1,41 @@
+<!--{include header}-->
+
+<div class="wrap2" id="citylist" style="background:#fff url("/static/theme/ev56_58/css/img/shenqi.png") right top no-repeat;">
+  <p><span class="c2">邮件订阅>></span></p>                                          
+<div class="hotcity"><h4>把{$city['name']}每天最新的精品团购信息发到您的邮箱。</h4></div>
+  <div class="citysear">立即邮件订阅每日团购信息，不错过每一天的惊喜。</div>
+  <div class="clist">
+    <div>
+  <div class="ucon">
+  <form id="enter-address-form" action="/subscribe.php" method="post" class="validator">
+  	<style>
+        #hobby_email_span{display:inline-block;width:200px;vertical-align:top}
+  		#hobby_email_span span{display:inline-block;padding-right:5px}
+  		#GGS_cal{z-index:9999}
+    </style>
+    <ul class="buy_form" style="padding:10px">
+    	<li>
+      	<label>邮箱：</label>
+		<input id="enter-address-mail" name="email" class="i_text" type="text" value="{$login_user['email']}" size="20" require="true" datatype="email" /> 
+      </li>
+      <li>
+        <label for="">城市：</label>
+		<select name="city_id" class="i_select">${Utility::Option(Utility::OptionArray($allcities, 'id', 'name'), $city['id'])}</select>
+      </li>
+      <li>
+        <label></label>
+		<input id="enter-address-commit" type="submit" class="input input42" value="订阅" />
+      </li>
+    </ul>
+    </form>
+  </div>
+  <!-- 邮件提醒弹出框 -->
+  <div class="popcon">
+    <h2>每日精品团购包括！</h2>
+    <p>餐厅、酒吧、KTV、SPA、美发、健身、瑜伽、演出、影院等。</p>
+   </div>
+</div>
+  </div>
+  <div class="clear"></div>
+</div>
+<!--{include footer}-->

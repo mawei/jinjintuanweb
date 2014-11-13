@@ -52,7 +52,7 @@ class ZCoupon
             $coupon = array(
 					'id' => $id,
 					'user_id' => $order['user_id'],
-					'buy_id' => 0,
+					'buy_id' => $order['buy_id'],
 					'partner_id' => $team['partner_id'],
 					'order_id' => $order['id'],
 					'credit' => $team['credit'],
@@ -64,8 +64,6 @@ class ZCoupon
 			if(DB::Insert('coupon', $coupon))
 				sms_coupon($coupon);
 			$count = Table::Count('coupon', $ccon);
-			//print_r($coupon);die();
-				
 		}
 	}
 }

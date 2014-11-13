@@ -2,7 +2,7 @@
 $value = array (
   'mid' => '',
   'sec' => '',
-  'guarantee' => 'Y',
+  'guarantee' => 'N',
   'direct' => 'Y',
 );
 ?>

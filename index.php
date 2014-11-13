@@ -5,6 +5,8 @@ if(!$INI['db']['host']) redirect( WEB_ROOT . '/install.php' );
 if($city&&option_yes('rewritecity')){
 	redirect(WEB_ROOT."/{$city['ename']}");
 }
+
+
 $request_uri = 'index';
 
 $group_id = abs(intval($_GET['gid']));
@@ -13,7 +15,7 @@ if (option_yes('indexmulti')&& option_yes('indexpage')) {
 	$city_id = abs(intval($city['id']));
 	$now = time();
 	$size = abs(intval($INI['system']['indexteam']));
-	if ($size<=1) return current_team($city_id);
+	if ($size<=1) $teams = current_team($city_id);
 	$condition = array( 
 			'team_type' => 'normal',
 			"begin_time < '{$now}'",
@@ -30,6 +32,7 @@ if (option_yes('indexmulti')&& option_yes('indexpage')) {
 				'offset' => $offset,
 				));
 	$disable_multi = true;
+	
 	die(require_once( dirname(__FILE__) . '/multi.php'));
 
 }else{

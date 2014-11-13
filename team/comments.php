@@ -21,6 +21,5 @@ $users = Table::Fetch('user', $user_ids);
 $team_ids = Utility::GetColumn($orders, 'team_id');
 $teams = Table::Fetch('team', $team_ids);
 
-
 $pagetitle = '买家点评';
 include template('team_comment');

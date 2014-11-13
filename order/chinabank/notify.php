@@ -14,17 +14,17 @@ $v_md5str  = trim($_POST['v_md5str' ]);   //拼凑后的MD5校验值
 
 /* 重新计算md5的值 */
 $text = "{$v_oid}{$v_pstatus}{$v_amount}{$v_moneytype}{$key}";
-
 $md5string = strtoupper(md5($text));
+
 /* 判断返回信息，如果支付成功，并且支付结果可信，则做进一步的处理 */
 if ($v_md5str == $md5string) {
 	list($_, $order_id, $city_id, $_) = explode('-', $v_oid, 4);
 	if($v_pstatus=="20") {
+
 		/* charge */
 		if ( $_ == 'charge' ) {
 			@list($_, $user_id, $create_time, $_) = explode('-', $v_oid, 4);
 			ZFlow::CreateFromCharge($v_amount, $user_id, $create_time, 'chinabank');
-				
 			die('ok');
 		}
 		/* end charge */

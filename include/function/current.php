@@ -2,7 +2,7 @@
 function current_frontend() {
 	global $INI;
 	$a = array(
-			'/index.php' => '首页',
+			'/index.php' => '首页2',
 			'/team/index.php' => '往期团购',
 			);
 	if(option_yes('navseconds')) $a['/team/seconds.php'] = '秒杀抢团';
@@ -219,6 +219,7 @@ function mcurrent_misc_money($selector=null){
                 '/manage/misc/money.php?s=cardstore' => '充值卡充值',
 		'/manage/misc/money.php?s=withdraw' => '提现记录',
 		'/manage/misc/money.php?s=cash' => '现金支付',
+		 '/manage/misc/money.php?s=hdfk' => '货到付款',
 		'/manage/misc/money.php?s=refund' => '退款记录',
 	);
 	$l = "/manage/misc/money.php?s={$selector}";
@@ -253,6 +254,7 @@ function mcurrent_order($selector=null) {
 		'/manage/order/unpay.php' => '未付订单',
         '/manage/order/refund.php' => '退款管理',
 		'/manage/order/express.php' => '上传快递单号',
+		'/manage/order/hdfk.php' => '货到付款',
 	);
 	$l = "/manage/order/{$selector}.php";
 	return current_link($l,$a,true);
@@ -272,6 +274,7 @@ function mcurrent_team($selector=null) {
 		'/manage/team/success.php' => '成功项目',
 		'/manage/team/failure.php' => '失败项目',
 		'/manage/team/edit.php' => '新建项目',
+		'/manage/team/increase.php' => '自动人数',
 	);
 	$l = "/manage/team/{$selector}.php";
 	return current_link($l,$a,true);
@@ -319,6 +322,7 @@ function mcurrent_market($selector=null) {
 		'/manage/market/index.php' => '邮件营销',
 		'/manage/market/sms.php' => '短信群发',
 		'/manage/market/down.php' => '数据下载',
+		'/manage/market/ad.php' => '广告设置',
 	);
 	$l = "/manage/market/{$selector}.php";
 	return current_link($l,$a,true);
