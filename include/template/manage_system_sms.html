@@ -16,11 +16,11 @@
 						<div class="wholetip clear"><h3>1、基本信息</h3></div>
                         <div class="field">
                             <label>短信用户</label>
-                            <input type="text" size="30" name="sms[user]" class="f-input" value="{$INI['sms']['user']}" style="width:200px;" /><span class="inputtip">最土网增值平台(<a href="http://notice.zuitu.com/" target="_blank">http://notice.zuitu.com/</a>)用户名&nbsp;[<font color="red">在线软件升级必填项</font>]</span>
+                            <input type="text" size="30" name="sms[user]" class="f-input" value="{$INI['sms']['user']}" style="width:200px;" /><span class="inputtip">爱米短信平台(<a href="http://sms.amyone.com/" target="_blank">http://sms.amyone.com</a>)用户名</span>
                         </div>
                         <div class="field">
                             <label>短信密码</label>
-                            <input type="password" size="30" name="sms[pass]" class="f-input" value="{$INI['sms']['pass']}" style="width:200px;" /><span class="inputtip">最土网增值平台(<a href="http://notice.zuitu.com/" target="_blank">http://notice.zuitu.com/</a>)的密码</span>
+                            <input type="password" size="30" name="sms[pass]" class="f-input" value="{$INI['sms']['pass']}" style="width:200px;" /><span class="inputtip">爱米短信平台(<a href="http://sms.amyone.com/" target="_blank">http://sms.amyone.com/</a>)的密码</span>
                         </div>
                         <div class="field">
                             <label>点发频率</label>
@@ -30,7 +30,7 @@
                         <div class="field">
                             <label>发送次数</label>
                             <input type="text" size="30" name="sms[numbers]" class="number" value="${abs(intval($INI['sms']['numbers']))}"/>
-                            <span class="inputtip">用户购买订单后每张{$INI['system']['couponname']}最多发送次数，建议：5次</span>
+                            <span class="inputtip">用户购买订单后每张{$INI['system']['couponname']}最多发送次数，建议：3-5次</span>
                         </div>
                         <div class="act">
                             <input type="submit" value="保存" name="commit" class="formbutton"/>

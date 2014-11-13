@@ -10,7 +10,7 @@
 		<tr><td nowrap><b>英文名称：</b></td><td><input type="text" name="ename" value="{$category['ename']}" require="true" datatype="english" class="f-input" style="text-transform:lowercase;" /></td></tr>
 		<tr><td nowrap><b>首字母：</b></td><td><input type="text" name="letter" value="{$category['letter']}" maxLength="1" require="true" datatype="english" class="f-input" style="text-transform:uppercase;" /></td></tr>
 		<tr><td nowrap><b>所属分类：</b></td><td>
-				<select name="fid" class="f-input"  style="width:auto;"><option value="0">一级大类</option>${Utility::Option($newcategory, $category['fid'])}</select>
+				<select name="fid" class="f-input"  style="width:auto;"><!--{if $zone[0] == 'group'}--><option value="0">一级大类</option><!--{/if}-->${Utility::Option($newcategory, $category['fid'])}</select>
 		</td></tr>
 		<tr><td nowrap><b>导航显示(Y/N)：</b></td><td><input type="text" name="display" value="{$category['display']}" class="f-input" style="text-transform:uppercase;"/></td></tr>
 		<tr><td nowrap><b>排序(降序)：</b></td><td><input type="text" name="sort_order" value="${intval($category['sort_order'])}" class="f-input" /></td></tr>

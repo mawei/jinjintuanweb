@@ -22,7 +22,6 @@ window.x_init_hook_gm = function() {
 		jQuery('#inputlonglat').val(e.point.lat+','+e.point.lng);	
 	};
 };
-
 </script>
 
 
@@ -79,7 +78,11 @@ window.x_init_hook_gm = function() {
 							<label>商家图片2</label>
 							<input type="file" size="30" name="upload_image2" id="partner-create-image2" class="f-input f-hint" />
 						</div>
-   						<div class="wholetip clear"><h3>3、基本信息</h3></div>
+                        <div class="field">
+                            <label>地图坐标</label>
+                            <input type="text" size="30" name="longlat" style="width:300px;cursor:point;" class="f-input f-hint" id="inputlonglat" readonly value="{$partner['longlat']}" onclick="X.misc.setbaidumap('{$partner['longlat']}');" /><span class="inputtip"><a href="javascript:;" style="cursor:point;" onclick="jQuery('#inputlonglat').val('');">取消地图坐标信息</a></span>
+						</div>
+						<div class="wholetip clear"><h3>3、基本信息</h3></div>
                         <div class="field">
                             <label>商户名称</label>
                             <input type="text" size="30" name="title" id="partner-create-title" class="f-input f-hint" value="{$partner['title']}" require="true" datatype="require" />
@@ -100,12 +103,6 @@ window.x_init_hook_gm = function() {
                             <label>商户地址</label>
                             <input type="text" size="30" name="address" id="partner-create-address" class="f-input f-hint" value="{$partner['address']}" datatype="require" require="true" />
 						</div>
-						<div class="field">
-                            <label>地图坐标</label>
-                            <input type="text" size="30" name="longlat" style="width:300px;cursor:point;" class="f-input f-hint" id="inputlonglat"  value="{$partner['longlat']}" /><span class="inputtip">
-<!--                             <input type="button" onclick="doOptions()" value="获取坐标" />
-                            <a href="javascript:;" style="cursor:point;" onclick="jQuery('#inputlonglat').val('');">取消地图坐标信息</a></span>
- -->						</div>
                         <div class="field">
                             <label>手机号码</label>
                             <input type="text" size="30" name="mobile" id="partner-create-mobile" class="f-input f-hint" value="{$partner['mobile']}" maxLength="11" />

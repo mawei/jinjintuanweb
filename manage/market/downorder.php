@@ -11,6 +11,7 @@ if ( $_POST ) {
 	$express_no = $_POST['express_no'];
 
 	if (!$team_id || !$service || !$state) die('-ERR ERR_NO_DATA');
+    //print_r($express_no);exit;
 	$condition = array(
 			'service' => $service,
 			'state' => $state,
@@ -27,6 +28,7 @@ if ( $_POST ) {
 				'condition' => $condition,
 				'order' => 'ORDER BY pay_time DESC, id DESC',
 				));
+	//$order['referer'] = Table::Fetch('referer', $orders['id'], 'order_id');
 
 	if (!$orders) die('-ERR ERR_NO_DATA');
 	$team = Table::Fetch('team', $team_id);

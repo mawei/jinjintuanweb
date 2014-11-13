@@ -90,25 +90,25 @@ class DB
 
 	static public function Query( $sql )
 	{
-		//echo $sql;
 		self::Instance();
+
 		if ( self::$mDebug )
 		{
 			echo $sql;
 		}
 
-		$result = mysql_query( $sql, self::$mConnection );
+		$result = @mysql_query( $sql, self::$mConnection );
 		self::$mCount++;
 
 		if ( $result )
-		{				
+		{
 			return $result;
 		}
 		else
 		{
-			//print("aaa");
 			self::$mError = mysql_error();
 		}
+
 		self::Close();
 		return false;
 	}
@@ -141,14 +141,10 @@ class DB
 		$one = isset($options['one']) ? $options['one'] : false;
 		$offset = isset($options['offset']) ? abs(intval($options['offset'])) : 0;
 		if ( $one ) {
-			//echo '1';
 			$size = 1;
 		} else {
 			$size = isset($options['size']) ? abs(intval($options['size'])) : null;
-			//echo '2';
-				
 		}
-		//echo '3';
 		$select = isset($options['select']) ? $options['select'] : '*';
 		$order = isset($options['order']) ? $options['order'] : null;
 		$cache = isset($options['cache'])?abs(intval($options['cache'])):0;
@@ -159,13 +155,6 @@ class DB
 		$limitation = $size ? "LIMIT $offset,$size" : null;
 
 		$sql = "SELECT {$select} FROM `$table` $condition $order $limitation";
-// 		if($table=="user")
-// 		{
-// 			//echo $sql;
-// 			//echo $cache+"bb";
-// 			self::GetQueryResult( $sql, $one, $cache);
-// 			die();
-// 		}
 		return self::GetQueryResult( $sql, $one, $cache);
 	}
 
@@ -176,8 +165,8 @@ class DB
 			$ret = Cache::Get($mkey);
 			if ( $ret ) return $ret;
 		}
+
 		$ret = array();
-		
 		if ( $result = self::Query($sql) )
 		{
 			while ( $row = mysql_fetch_assoc($result) )
@@ -187,11 +176,11 @@ class DB
 				{
 					$ret = $row;
 					break;
-				}else{ 						
+				}else{ 
 					array_push( $ret, $row );
 				}
-				
-			}				
+			}
+
 			@mysql_free_result( $result );
 		}
 		if ($ret) Cache::Set($mkey, $ret, 0, $cache);
@@ -225,6 +214,7 @@ class DB
 
 		$content = trim($content, ',');
 		$sql .= $content;
+
 		$result = self::Query ($sql);
 		if ( false==$result )
 		{
@@ -254,6 +244,7 @@ class DB
 
 	static public function Update( $table=null, $id=1, $updaterow=array(), $pkname='id' )
 	{
+
 		if ( null==$table || empty($updaterow) || null==$id)
 			return false;
 
@@ -264,17 +255,18 @@ class DB
 
 		$sql = "UPDATE `$table` SET ";
 		$content = null;
+
 		foreach ( $updaterow as $k => $v )
 		{
 			$v_str = null;
 			if ( is_numeric($v) )
-			{$v_str = "'{$v}'";}
+				$v_str = "'{$v}'";
 			else if ( is_null($v) )
-			{$v_str = 'NULL';}
+				$v_str = 'NULL';
 			else if ( is_array($v) )
-			{$v_str = $v[0];} //for plus/sub/multi; 
+				$v_str = $v[0]; //for plus/sub/multi; 
 			else
-			{$v_str = "'" . self::EscapeString($v) . "'";}
+				$v_str = "'" . self::EscapeString($v) . "'";
 
 			$content .= "`$k`=$v_str,";
 		}
@@ -282,8 +274,9 @@ class DB
 		$content = trim($content, ',');
 		$sql .= $content;
 		$sql .= " WHERE $condition";
-		
+
 		$result = self::Query ($sql);
+
 		if ( false==$result )
 		{
 			self::Close();

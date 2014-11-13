@@ -1,0 +1,52 @@
+<!--{include header}-->
+
+<div class="wrap">
+    <div class="uleft c3" id="uleft_ev56">
+<h2 id="uctit">用户中心</h2>
+<h3>交易管理</h3>
+<ul>
+  ${current_account('null')}
+</ul>
+<h3>咨询与售后</h3>
+<ul>
+  <li><a href="/feedback/suggest.php">咨询/投诉</a></li>
+  <li><a href="/feedback/seller.php">商务合作</a></li>
+  <li class="cur"><a href="/team/comments.php">买家点评</a></li>
+</ul>
+
+<a class="faq" href="/help/faqs.php" target="_blank">常见问题&gt;&gt;</a>
+</div>    <div class="uright" id="uright_ev56">
+    <div class="utit">	  
+	  
+      <h2>买家点评</h2>
+    </div>
+	
+	              <p>这里是在{$INI['system']['sitename']}购物过的朋友留下的评价。您也可以在"我的{$INI['system']['abbreviation']}"下方的"我的订单"里面给已经发货的订单评价哦~</p>
+    <ul class="qa_list qa_list1">
+				     <!--{loop $orders $index $one}-->
+                    <li>
+                    <div style="width:220px;float:left">
+                    <p class="asker"><a name="qa{$one['user_id']}"></a>第{$one['id']}个评论</p>
+					<a href="/team.php?id={$one['team_id']}" style="padding-left:8px;">
+                    <img src="${team_image($teams[$one['team_id']]['image'], true)}" width="200" height="145" />
+					</a>
+                    </div>
+                    <div style="width:480px; float:right; padding-top:15px;">
+            <p style="text-indent:12px;">
+            <a name="qa{$one['user_id']}"></a><span>&nbsp;</span><strong>{$users[$one['user_id']]['username']}</strong>
+             <span>${date('Y年n月j日', $one['comment_time'])}注册</span>
+            </p>
+            <p class="askcon"> 评价了TA在{$INI['system']['sitename']}买到的 <a href="/team.php?id={$one['team_id']}" target="_blank">{$teams[$one['team_id']]['title']}</a></p>
+                                                                        <div class="anscon"><p><span>点评：</span>  {$one['comment_content']}</p></div>
+                                                                        </div>
+                                                       </li>
+				    <!--{/loop}-->
+              
+          </ul>
+    
+
+					<div  class="class_quick_fm">{$pagestring}</div>	
+  <div class="clear"></div>
+</div>
+</div>
+<!--{include footer}-->

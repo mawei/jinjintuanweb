@@ -504,7 +504,7 @@ function upload_image($input, $image=null, $type='team', $scale=false) {
 		}
 		if($type=='team' && $scale) {
 			$npath = preg_replace('#(\d+)\.(\w+)$#', "\\1_index.\\2", $path); 
-			Image::Convert($path, $npath, 100, 60, Image::MODE_SCALE);
+			Image::Convert($path, $npath, 200, 120, Image::MODE_CUT);
 		}
 		return $image;
 	} 
@@ -620,6 +620,7 @@ function state_explain($team, $error='false') {
 function get_zones($zone=null) {
 	$zones = array(
 			'city' => '城市列表',
+			'area' => '商圈列表',
 			'group' => '项目分类',
 			'public' => '讨论区分类',
 			'grade' => '用户等级',

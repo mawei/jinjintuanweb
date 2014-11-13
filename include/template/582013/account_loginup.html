@@ -1,0 +1,111 @@
+<!--{include header}-->
+<style type="text/css">
+.mtips .close{position:absolute;top:0;right:20px;padding-right:16px;background:url("/static/theme/58/css/i/bg-sysmsg-close.gif") 100% 50% no-repeat;font-size:12px;cursor:pointer;}
+
+.ulogin .alifast {border-top: 1px solid #DDDDDD;color: #333333;margin: 20px 10px 0;padding: 15px 0 0;}
+</style>
+<!---content--->
+<div class="wrap2">
+<div id="dingdan" class="buy_info ucon">
+      <h2 align="center">请注册或登录<span>快速注册，只需30秒</span></h2>
+                <form action="/account/signup.php" method="post" id="deal-buy-form-signup" class="validator">
+      <ul class="buy_form dzc">
+        <li class="title">
+          <h3>我要注册</h3>
+        </li>
+        <li>
+		  
+                        <label for="signup-email-address">Email</label>
+
+                        <input type="text" class="i_text" size="30" name="email" id="signup-email-address" require="true" datatype="email|ajax" msg="|" url="${WEB_ROOT}/ajax/validator.php" vname="signupemail" />
+                        <p><span class="c9" id="userName_Tip">登录及找回密码用，不会公开</span></p>
+        </li>
+        <li>
+          <label for="signup-username">用户名</label>
+          <input type="text" class="i_text" size="30" name="username" id="signup-username" require="true" datatype="limit|ajax" min="2" max="16" vname="signupname" url="${WEB_ROOT}/ajax/validator.php" msg="|" maxLength="16" />
+          <p><span class="c9" id="userName_Tip">4~16个字，可为英文中文和数字</span></p>
+        </li>
+        <li>
+          <label for="signup-password-confirm">手机号码</label>
+          <input type="text" size="30" name="mobile" id="signup-mobile" class="i_text" require="${option_yes('needmobile')?'true':'require'}" datatype="mobile" />
+          <p><span class="c9" id="mobile_Tip">手机号码用于{$INI['system']['couponname']}的短信通知</span></p>
+        </li>
+        <li>
+          <label for="signup-password">密码</label>
+          <input type="password" size="30" name="password" id="signup-password" class="i_text" datatype="require" require="true" />
+          <p><span class="c9" id="password_Tip">最少6个字符</span></p>
+        </li>
+        <li>
+          <label for="signup-password-confirm">确认密码</label> 
+          <input type="password" size="30" name="password2" id="signup-password-confirm" class="i_text" require="true" datatype="compare" compare="signup-password" />
+          <p><span class="c9" id="cpassword_Tip">请输入一致密码</span></p>
+        </li>
+        <li>
+          <label id="enter-address-city-label" for="signup-city">所在城市</label>
+		  <select name="city_id" class="i_select quyu">${Utility::Option(Utility::OptionArray($allcities,'id','name'), $city['id'])}<option value='0'>其他</option></select>
+          	
+        </li>
+					<!--{if option_yes('verifyregister')}-->
+		<li>
+          <label for="feedback-email-address">验证码</label>
+		  <input type="text" size="30" name="vcaptcha" id="signup-mobile" class="i_text i_yanz" require="true" datatype="require|limitc" min="4" max="4" style="text-transform:uppercase;"/>
+                    
+                    <img src="/captcha.php" title="看不清楚，点击更换" onclick="X.misc.captcha(this);" style="cursor:pointer;" />
+          <p><span class="c9" id="validatecode_Tip">请输入图片中的验证码</span></p>
+        </li>
+					<!--{/if}-->
+        </li>
+        <li class="i_font12">
+          <label for="subscribe"></label>
+           <input tabindex="3" type="checkbox" value="1" name="subscribe" id="subscribe" class="f-check" checked="checked" />
+          订阅每日最新团购信息</li>
+        <li>
+          <label></label>
+		  <input type="submit" value="注册" name="commit" id="signup-submit" class="input input42"/>
+        </li>
+      </ul>
+	  </form>
+	  <form action="/account/login.php" method="post" id="deal-buy-form-login" class="validator">
+      <ul class="buy_form ddl">
+        <li class="title">
+          <h3>我要登录</h3>
+        </li>
+        <li>
+          <label for="">用户名/邮箱：</label>
+		  <input type="text" class="i_text" id="deal-buy-email" name="email" size="30" require="true" datatype="require|limit" min="2" />
+        </li>
+        <li>
+          <label for="">密码：</label>
+		  <input type="password" class="i_text" name="password" size="30" datatype="require" require="true" />
+        </li>
+        <li>
+          <label></label><input type="submit"  class="input input42" name="login" value="登录"/>
+          <a href="/account/repass.php">忘记密码</a>
+		</li>
+        <li class="ulogin">
+          <p>
+                       <div class="alifast">
+                       <!--{if $INI['alipay']['alifast'] == 'Y'}-->
+                       <a href="/alifast/auth_authorize.php"><img src="/static/theme/58/css//i/btn_login_zfbkj.png" /></a>         		       
+                       <!--{/if}-->
+                       <!--{if option_yes('sinalogin')}-->
+					   <a href="/thirdpart/sina/login.php"><img src="/static/theme/58/css/i/sina_login.png" /></a>&nbsp;
+					   <!--{/if}-->
+					   <!--{if option_yes('qqlogin')}-->
+					   <a href="/thirdpart/qq/index.php"><img src="/static/theme/58/css/i/qq.png" /></a>
+                       <!--{/if}-->
+                       <!--{if option_yes('qzonelogin')}-->
+                       <a href="/thirdpart/qzone/index.php"><img src="/static/theme/58/css/i/qq.gif" /></a>
+                       <!--{/if}-->
+                       </div>	
+          </p>
+        </li>
+      </ul>
+	  </form>
+      <div class="clear"></div>
+    </div>
+  <div class="clear"></div>
+</div>
+<!---contentEnd--->
+        
+<!--{include footer}-->

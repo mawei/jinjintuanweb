@@ -16,7 +16,7 @@ if ( $team['close_time'] ) {
 	redirect( WEB_ROOT . "/team.php?id={$id}");
 }
 
-if ( $order['state'] == 'unpay' ) {
+if ( $order['state'] == 'unpay'&&$order['service']!='hdfk') {
 
 	/* payservice choice */
 	if(@$INI[$order['service']]['mid'] || @$INI[$order['service']]['acc']) {

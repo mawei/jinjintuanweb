@@ -37,6 +37,8 @@ if($verify_result) {
 	if ( $order['state'] == 'pay' ) {
 		Session::Set('notice', "购买成功！");
 	}
+	$trade_no = strval($_GET['trade_no']);
+	alipay_send_goods($trade_no);
 }
 
 redirect( WEB_ROOT . "/order/pay.php?id={$order_id}");
