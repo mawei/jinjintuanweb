@@ -5,7 +5,6 @@ if(isset($_GET['sessionid']))
 	session_start();
 }
 
-phpinfo();
 
 require_once(dirname(__FILE__) . '/app.php');
 require_once(dirname(__FILE__) . '/baiduMapApi.php');
