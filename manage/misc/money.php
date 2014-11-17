@@ -4,7 +4,7 @@ require_once(dirname(dirname(dirname(__FILE__))) . '/app.php');
 need_manager();
 need_auth('admin');
 
-$actions = array('store', 'charge','cardstore','paycharge', 'withdraw', 'cash', 'refund','hdfk');
+$actions = array('store', 'charge','cardstore','paycharge', 'withdraw', 'cash', 'refund');
 
 ($s = strtolower(strval($_GET['s']))) || ($s = 'store');
 if(!$s||!in_array($s, $actions)) $s = 'store';
@@ -139,25 +139,5 @@ else if ( 'refund' == $s ) {
 	$team_ids = Utility::GetColumn($flows, 'detail_id');
 	$teams = Table::Fetch('team', $team_ids);
 	include template('manage_misc_money_refund');
-}
-else if ( 'hdfk' == $s ) {
-	$condition = array( 'service' => 'hdfk', 'state' => 'pay', );
-	$summary = Table::Count('order', $condition, 'money');
-	$count = Table::Count('order', $condition);
-	list($pagesize, $offset, $pagestring) = pagestring($count, 20);
-	$orders = DB::LimitQuery('order', array(
-		'condition' => $condition,
-		'order' => 'ORDER BY id DESC',
-		'offset' => $offset,
-		'size' => $pagesize,
-	));
-
-	$user_ids = Utility::GetColumn($orders, 'user_id');
-	$admin_ids = Utility::GetColumn($orders, 'admin_id');
-	$users = Table::Fetch('user', array_merge($user_ids,$admin_ids));
-
-	$team_ids = Utility::GetColumn($orders, 'team_id');
-	$teams = Table::Fetch('team', $team_ids);
-	include template('manage_misc_money_hdfk');
 }
 else redirect( WEB_ROOT . '/manage/misc/money.php' );

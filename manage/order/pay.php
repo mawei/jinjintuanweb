@@ -7,7 +7,6 @@ need_auth('order');
 $condition = array(
 	'state' => 'pay',
 	'team_id > 0',
-	"service !='hdfk'",
 );
 
 /* filter */

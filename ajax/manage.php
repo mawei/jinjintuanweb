@@ -72,19 +72,9 @@ elseif ( 'orderremove' == $action) {
 else if ( 'ordercash' == $action ) {
 	need_auth('order');
 	$order = Table::Fetch('order', $id);
-	if($order['service']=='hdfk') return;
 	ZOrder::CashIt($order);
 	$user = Table::Fetch('user', $order['user_id']);
 	Session::Set('notice', "现金付款成功，购买用户：{$user['email']}");
-	json(null, 'refresh');
-}
-else if ( 'orderhdfk' == $action ) {
-	need_auth('order');
-	$order = Table::Fetch('order', $id);
-	if($order['service']!='hdfk') return;
-	ZOrder::HdfkIt($order);
-	$user = Table::Fetch('user', $order['user_id']);
-	Session::Set('notice', "货到付款确认已收款，购买用户：{$user['email']}");
 	json(null, 'refresh');
 }
 else if ( 'teamdetail' == $action) {
@@ -464,22 +454,9 @@ elseif ( 'categoryedit' == $action ) {
 			                'zone' => 'group',
 			                'fid' => '0',
 			                'display' => 'Y') ,
-						    ));	  
-		  $newcategory = Utility::OptionArray($newcategory, 'id', 'name');
-		  
-		  $html = render('manage_ajax_dialog_categorygroup');
-	}else if($zone[0] == 'area'){
-	     $newcategory = DB::LimitQuery('category', array(
-						   'condition' => array( 
-			                'zone' => 'city',
-			                'fid' => '0',
-			                'display' => 'Y') ,
 						    ));
 		  $newcategory = Utility::OptionArray($newcategory, 'id', 'name');
-		  
-
-		  
-	      $html = render('manage_ajax_dialog_categorygroup');
+		  $html = render('manage_ajax_dialog_categorygroup');
 	}else{
 		$html = render('manage_ajax_dialog_categoryedit');
 	}

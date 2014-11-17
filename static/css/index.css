@@ -1203,4 +1203,3 @@ div.expresstip { margin:0px 10px;background-color:#ECECEC;padding:5px; }
 /*buy button*/
 #deal-stuff .deal-buy-bottom a {background: url("i/bg-deal-buy-bottom.png") no-repeat scroll 0 -68px transparent;display: block;height: 60px;line-height: 60px;outline: medium none;text-indent: -9999px;width: 160px;}
 #deal-stuff .deal-buy-bottom a:hover {background: url("i/bg-deal-buy-bottom.png") no-repeat scroll 0 0 transparent;}
-#deal-buy .paytype .typelist .hdfk{height:39px;background:url(i/huodaofukuan.png) no-repeat 20px 5px;}

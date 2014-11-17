@@ -122,20 +122,6 @@
 							<label>仅用券号验证</label>
 							<select name="option[onlycoupon]" style="float:left;">${Utility::Option($option_yn, option_yesv('onlycoupon'))}</select><span class="inputtip">开启后,仅用券号即可验证,确保开启又关闭及之前券验证有效,仍会生成密码。</span>
 		 				</div>
-		 				<!--自动人数-->
-                        <div class="field">
-							<label>自动人数增加</label>
-							<select name="option[task]" style="float:left;">${Utility::Option($option_yn, option_yesv('task'))}</select><span class="inputtip" style="float:none; margin:0; padding:0">&nbsp;默认时间间隔：<input type="text" size="10" name="system[task_i_hour]" class="number" value="${abs(intval($INI['system']['task_i_hour']))}" style="float:none; width:40px; margin:0"/> 小时 <input type="text" size="10" name="system[task_i_min]" class="number" value="${abs(intval($INI['system']['task_i_min']))}" style="float:none; width:40px; margin:0"/> 分 <input type="text" size="10" name="system[task_i_sec]" class="number" value="${abs(intval($INI['system']['task_i_hour']))}" style="float:none; width:40px; margin:0"/> 秒 &nbsp;&nbsp;&nbsp;&nbsp;默认增加人数：<input type="text" size="10" name="system[task_i_num]" class="number" value="${abs(intval($INI['system']['task_i_num']))}" style="float:none; width:60px; margin:0"/>&nbsp;&nbsp;默认值为新建项目使用，对已建好项目无效</span>
-		 				</div>
-                        <!--自动人数 end-->
-						 <!--货到付款-->
-                        <div class="field">
-                            <label>开启货到付款</label>
-							<select name="option[hdfk]" style="float:left;">
-
-${Utility::Option($option_yn, option_yesv('hdfk'))}</select>
-                        </div>
-                        <!--货到付款end-->
 						<div class="wholetip clear"><h3>3、分类显示</h3></div>
                         <div class="field">
                             <label>首页开启</label>

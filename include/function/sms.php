@@ -4,26 +4,7 @@ function sms_send($phone, $content) {
 	if (mb_strlen($content, 'UTF-8') < 20) {
 		return '短信长度低于20汉字？长点吧～';
 	}
-
-	/* include customsms function */
-// 	$smsowner_file = dirname(__FILE__) . '/smsowner.php';
-// 	if (file_exists($smsowner_file)) { 
-// 		require_once( $smsowner_file);
-// 		if(function_exists('sms_send_owner')) {
-// 			return sms_send_owner($phone, $content);
-// 		}
-// 	}
-	/* end include */
-
-// 	$user = strval($INI['sms']['user']); 
-// 	$pass = strtolower(md5($INI['sms']['pass']));
-// 	if(null==$user) return true;
-// 	$content = urlEncode($content);
-// 	$api = "http://notice.zuitu.com/sms?user={$user}&pass={$pass}&phones={$phone}&content={$content}";
-// 	$res = Utility::HttpRequest($api);
 	$result = send_sms("355e91e02a95574559ebba5a3c1af6c2",$content,$phone);
-		
-	//print_r($result);die();
 	return trim(strval($result['code']))=='OK' ? true : strval($res);
 }
 

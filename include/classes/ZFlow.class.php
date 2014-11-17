@@ -214,8 +214,8 @@ class ZFlow {
 		$pay = Table::Fetch('pay', $pay_id);
 		if ( $pay ) return 0;
 		$order_id = ZOrder::CreateFromCharge($money,$user_id,$time,$service);
+		
 		if (!$order_id) return 0;
-
 		//insert pay record
 		$pay = array(
 			'id' => $pay_id,
@@ -230,8 +230,8 @@ class ZFlow {
 		DB::Insert('pay', $pay);
 		ZCredit::Charge($user_id, $money);
 		//end//
-
 		//update user money;
+		
 		$user = Table::Fetch('user', $user_id);
 		Table::UpdateCache('user', $user_id, array(
 					'money' => array( "money + {$money}" ),

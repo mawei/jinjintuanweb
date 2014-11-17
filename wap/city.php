@@ -3,6 +3,7 @@ require_once(dirname(dirname(__FILE__)) . '/app.php');
 
 $ename = strval($_GET['n']);
 $currefer = null;
+
 if ($ename&&$ename!='none') {
 	$city = Table::Fetch('category', $ename, 'ename');
 	if ($city) { 
