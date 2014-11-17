@@ -1,0 +1,67 @@
+<!--{include header}-->
+<style type="text/css">
+.mtips .close{position:absolute;top:0;right:20px;padding-right:16px;background:url("/static/theme/58/css/i/bg-sysmsg-close.gif") 100% 50% no-repeat;font-size:12px;cursor:pointer;}
+
+.ulogin .alifast {border-top: 1px solid #DDDDDD;color: #333333;margin: 20px 10px 0;padding: 15px 0 0;}
+</style>
+<!---content--->
+<div class="wrap2">
+  <div class="uleft2 ul3">
+    <div class="utit">
+      <h2>欢迎登录{$INI['system']['sitename']}</h2>
+    </div>
+	     <div class="ucon login">
+                    <form id="login-user-form" method="post" action="/account/login.php" class="validator">
+      <ul>
+        <li>
+         
+                            <label for="login-email-address">手机号</label>
+							<input type="text" size="30" name="mobile" id="login-email-address" class="i_text" value="" require="true" datatype="require|limit" min="2" />
+						 <div id="username_Tip"></div>
+        </li>
+        <li>
+                            <label for="login-password">密码</label>
+                            <input type="password" size="30" name="password" id="login-password" class="i_text" require="true" datatype="require" />
+						 <div id="password_Tip"></div>
+        </li>
+        <li>
+          <label for="autologin"></label><input type="checkbox" value="1" name="auto_login" id="autologin" class="f-check" checked /> 下次自动登录
+        </li>
+        <li>
+          <label for=""></label>
+		  <input type="submit" value="登录" name="commit" id="login-submit" class="input input42"/>
+		  
+         　	<a href="/account/repass.php">忘记密码</a></li>
+	
+        <li class="ulogin">
+          <p> 
+                       <div class="alifast">
+                       <!--{if $INI['alipay']['alifast'] == 'Y'}-->
+                       <a href="/alifast/auth_authorize.php"><img src="/static/theme/58/css//i/btn_login_zfbkj.png" /></a>         		       
+                       <!--{/if}-->
+                       <!--{if option_yes('sinalogin')}-->
+					   <a href="/thirdpart/sina/login.php"><img src="/static/theme/58/css/i/sina_login.png" /></a>
+					   <!--{/if}-->
+					   <!--{if option_yes('qqlogin')}-->
+					   <a href="/thirdpart/qq/index.php"><img src="/static/theme/58/css/i/qq.png" /></a>
+                       <!--{/if}-->
+                       <!--{if option_yes('qzonelogin')}-->
+                       <a href="/thirdpart/qzone/index.php"><img src="/static/theme/58/css/i/qq.gif" /></a>
+                       <!--{/if}-->
+                       </div>	  
+        </p>
+        </li>
+      </ul>
+	  	</form>
+    </div>
+  </div>
+  <div class="uright2 ur3">
+    <h3>还没有{$INI['system']['abbreviation']}账户？</h3>
+    <p class="c9">立即<a href="/account/signup.php">注册</a>，仅需30秒！</p>
+    <p><a href="/account/signup.php" class="zhuce">注册新用户</a></p>
+  </div>
+  <div class="clear"></div>
+</div>
+<!---contentEnd--->
+        
+<!--{include footer}-->

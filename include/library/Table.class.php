@@ -146,6 +146,7 @@ class Table
 	}
 
 	static public function UpdateCache($n, $id, $r=array()) {
+		
 		DB::Update($n, $id, $r);
 		return Cache::Del(Cache::GetObjectKey($n,$id));
 	}

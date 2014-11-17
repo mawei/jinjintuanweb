@@ -1,23 +1,12 @@
 <?php
 require_once(dirname(dirname(dirname(__FILE__))) . '/app.php');
 require_once(dirname(__FILE__) . '/current.php');
+require_once(dirname(__FILE__) . '/SyncTeam.php');
 
 need_manager();
 need_auth('team');
-
 $id = abs(intval($_GET['id']));
 $team = $eteam = Table::Fetch('team', $id);
-
-function get_areas($fid){
-	$areas = DB::LimitQuery('category', array(
-			'condition' => array( 'fid' => $fid, ),
-			'order' => 'ORDER BY sort_order DESC, id DESC',
-	));
-	return $areas;
-}
-
-
-
 if ( is_get() && empty($team) ) {
 	$team = array();
 	$team['id'] = 0;
@@ -51,7 +40,7 @@ else if ( is_post() ) {
 		'express', 'credit', 'farefree', 'pre_number',
 		'user_id', 'city_id', 'group_id','sub_id', 'partner_id',
 		'team_type', 'sort_order', 'farefree', 'state',
-		'condbuy','express_relate','city_ids','area_ids','is_hdfk','team_tags'
+		'condbuy','express_relate','city_ids'
 		);
 	$team['user_id'] = $login_user_id;
 	$team['state'] = 'none';
@@ -67,51 +56,20 @@ else if ( is_post() ) {
 	$team['image'] = upload_image('upload_image',$eteam['image'],'team',true);
 	$team['image1'] = upload_image('upload_image1',$eteam['image1'],'team');
 	$team['image2'] = upload_image('upload_image2',$eteam['image2'],'team');
-	$team['is_hdfk'] = abs(intval($team['is_hdfk']));
-	
-	   //序列化选取的标签
-	if(!empty($team['team_tags'])){
-	   $team['team_tags'] = implode('', $team['team_tags']);
-	}else{
-	   $team['team_tags'] = 0;
-	}
-	
 	/* 序列化选取的城市 */
 	if (!empty($team['city_ids'])) {
 		if(in_array(0, $team['city_ids'])) { 
 			$team['city_id'] = 0; $team['city_ids'] = '@0@'; 
-			$team['area_ids'] = '@'.implode('@', $team['area_ids']).'@';
 		}
 		else {
 			$team['city_id'] = abs(intval($team['city_ids'][0]));
 			$team['city_ids'] = '@'.implode('@', $team['city_ids']).'@';
-			$team['area_ids'] = '@'.implode('@', $team['area_ids']).'@';
 		}
 	}else {
 		Session::Set('notice', '请选择项目发布的城市');
 		include template('manage_team_edit');
 		return ;
 	}
-	
-		/* 序列化选取的城市商圈 */
-	/*
-	if (!empty($team['area_ids'])) {
-		if(in_array(0, $team['area_ids'])) { 
-			$team['area_ids'] = '@0@'; 
-		}
-		else {			
-			$team['area_ids'] = '@'.implode('@', $team['area_ids']).'@';
-		}
-	}else {
-		Session::Set('notice', '请选择项目发布的城市商圈');
-		include template('manage_team_edit');
-		return ;
-	}
-	
-	*/
-	
-	
-	
 	if(empty($team['allowrefund']))  $team['allowrefund'] = 'N';
 
 	/* 自定义快递价格 */
@@ -157,15 +115,29 @@ else if ( is_post() ) {
 
 	//dbx($team);
 	$insert = array_unique($insert);
-	
 	$table = new Table('team', $team);
 	$table->SetStrip('detail', 'systemreview', 'notice');
 
 	if ( $team['id'] && $team['id'] == $id ) {
+		
+		
+		//$p = DB::Query("select * from `partner` where id =". $team["partner_id"]);
+		$p = DB::GetQueryResult("select * from `partner` where id =".$team['partner_id'],true);
+		if($p == null)
+		{
+			Session::Set('notice', '请选择商家');
+			include template('manage_team_edit');
+			return ;
+		}else{
+			$team['address'] = $p['address'];
+		}
 		$table->SetPk('id', $id);
 		$table->update($insert);
 		log_admin('team', '编辑team项目',$insert);
 		Session::Set('notice', '编辑项目信息成功');
+		
+		//$sync = new SyncTeam();
+		//$sync->updateById($team);
 		redirect( WEB_ROOT . "/manage/team/index.php");
 	} 
 	else if ( $team['id'] ) {
@@ -177,6 +149,8 @@ else if ( is_post() ) {
 	if ( $table->insert($insert) ) {
 		log_admin('team', '新建team项目',$insert);
 		Session::Set('notice', '新建项目成功');
+		//$sync = new SyncTeam();
+		//$sync->updateById($team);
 		redirect( WEB_ROOT . "/manage/team/index.php");
 	}
 	else {

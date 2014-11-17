@@ -125,3 +125,35 @@ function mail_invitation($emails, $content, $name) {
 	}
 	return true;
 }
+
+function mail_subscribemulti($teams,$subscribe) 
+{
+	global $INI;
+	$encoding = $INI['mail']['encoding'] ? $INI['mail']['encoding'] : 'UTF-8';
+	$week = array('日','一','二','三','四','五','六');
+	$today = date('Y年n月j日 星期') . $week[date('w')];
+	$first = array_shift($teams);
+	$vars = array(
+		'today' => $today,
+		'first' => $first,
+		'teams' => $teams,
+		'subscribe' => $subscribe,
+		'help_email' => $INI['mail']['helpemail'],
+		'help_mobile' => $INI['mail']['helpphone'],
+		'notice_email' => $INI['mail']['reply'],
+	);
+	$message = render('mail_subscribe_multiteam', $vars);
+	$options = array(
+		'contentType' => 'text/html',
+		'encoding' => $encoding,
+	);
+	$from = $INI['mail']['from'];
+	$to = $subscribe['email'];
+	$subject = $INI['system']['sitename'] . "今日团购：{$team['title']}";
+
+	if ($INI['mail']['mail']=='mail') {
+		Mailer::SendMail($from, $to, $subject, $message, $options);
+	} else {
+		Mailer::SmtpMail($from, $to, $subject, $message, $options);
+	}
+}

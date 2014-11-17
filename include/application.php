@@ -8,6 +8,7 @@ if (isset($_SERVER['HTTP_X_ORIGINAL_URL'])) {
 /* end */
 
 error_reporting(E_ALL^E_WARNING^E_NOTICE);
+// error_reporting(E_ALL);
 define('SYS_VERSION', 'CV2.0');
 define('SYS_SUBVERSION', '20120502');
 define('SYS_TIMESTART', microtime(true));

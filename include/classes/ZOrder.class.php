@@ -38,7 +38,6 @@ class ZOrder {
 				  );
 			DB::Insert('flow', $u);
 			$user = Table::FetchForce('user', $user_id);
-            //print_r($user);exit;
 			if ($user['money']<$order['origin']){
 				return false;
 			}
@@ -51,7 +50,7 @@ class ZOrder {
 						'pay_id' => $pay_id,
 						'money' => $money,
 						'state' => 'pay',
-						'trade_no' => $trade_no,
+						//'trade_no' => $trade_no,
 						'service' => $service,
 						'quantity' => $quantity,
 						'pay_time' => time(),
@@ -98,34 +97,5 @@ class ZOrder {
 			       );
 		return DB::Insert('order', $oarray);
 	}
-static public function HdfkIt($order) {
-		global $login_user_id;
-		if ($order['state']=='pay'||$order['service']!='hdfk') return 0;
-
-		//update order
-		Table::UpdateCache('order', $order['id'], array(
-					'state' => 'pay',
-					'admin_id' => $login_user_id,
-					'money' => $order['origin'],
-					'pay_time' => time(),
-					));
-        /* cash flow */
-		$order = Table::FetchForce('order', $order['id']);
-		ZFlow::CreateFromStore($order['user_id'], $order['origin']);
-		/* cash flow */
-		ZFlow::CreateFromOrder($order);
-		/* order : invite buy */
-		ZInvite::CheckInvite($order);
-		/* credit */
-		ZCredit::Buy($order['user_id'], $order);
-		
-		//UPDATE buy_id
-		$SQL = "UPDATE `order` o,(SELECT max(buy_id)+1 AS c FROM `order` WHERE state = 'pay' and 
-
-team_id = '".$order['team_id']."') AS c SET o.buy_id = c.c, o.luky_id = 100000 + floor(rand()*100000) WHERE 
-
-o.id = '".$order['id']."' AND buy_id = 0;";
-		DB::Query($SQL);
-	}	
 }
 ?>

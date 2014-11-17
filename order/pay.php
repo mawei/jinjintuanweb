@@ -21,48 +21,13 @@ if ( $order['user_id'] != $login_user['id']) {
 
 $team = Table::Fetch('team', $order['team_id']);
 team_state($team);
-if($order['service'] == 'hdfk') die(include template('order_pay_hdfk'));
-
 
 if (is_post() && $_POST['paytype'] ) {
-if($_POST['paytype']=='hdfk'&&$team['is_hdfk']){
-		Table::UpdateCache('order', $order_id,array('service' =>'hdfk','create_time'=>time()));
-		
-		$plus = $team['conduser']=='Y' ? 1 : $order['quantity'];
-		$team['now_number'] += $plus;
-
-		/* close time */
-		if ( $team['max_number']>0 
-				&& $team['now_number'] >= $team['max_number'] ) {
-			$team['close_time'] = time();
-		}
-
-		/* reach time */
-		if ( $team['now_number']>=$team['min_number']
-			&& $team['reach_time'] == 0 ) {
-			$team['reach_time'] = time();
-		}
-
-		Table::UpdateCache('team', $team['id'], array(
-			'close_time' => $team['close_time'],
-			'reach_time' => $team['reach_time'],
-			'now_number' => array( "`now_number` + {$plus}", ),
-		));
-		
-		/* send sms Immediately  */
-		if(option_yes('buycouponsms')) sms_buy($order);
-		
-		/* order : send express sms ? */
-		ZExpress::CheckOrder($order);
-		
-		die(include template('order_pay_hdfk'));
-	}
 	$uarray = array( 'service' => pay_getservice($_POST['paytype']) );
 	Table::UpdateCache('order', $order_id, $uarray);
 	$order = Table::Fetch('order', $order_id);
 	$order['service'] = pay_getservice($_POST['paytype']);
 }
-
 if ( $_POST['paytype']!='credit' 
 		&& $_POST['service']!='credit' 
 		&& $team['team_type']=='seconds' 

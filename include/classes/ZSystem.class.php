@@ -7,10 +7,12 @@ class ZSystem
 		$dbphp = DIR_CONFIGURE . '/db.php';
 		if (file_exists($dbphp)) {
 			configure_load();
+				
 		} else {
 			/* end */
 			$INI = Config::Instance('php');
 			$SYS = Table::Fetch('system', 1);
+			
 			$SYS = Utility::ExtraDecode($SYS['value']);
 			$INI = Config::MergeINI($INI, $SYS);
 		}
@@ -61,8 +63,10 @@ class ZSystem
 				$docroot = rtrim(substr($script_filename,0,$length),'/');
 			}
 			$webroot = trim(substr(WWW_ROOT, strlen($docroot)), '\\/');
+				
 			define('WEB_ROOT', $webroot ? "/{$webroot}" : '');
 		}
+		
 		return $INI;
 	}
 

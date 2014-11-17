@@ -38,17 +38,6 @@
             <div class="head"><h2>请注册或登录<span>快速注册，只需30秒</span></h2></div>
             <div class="sect">
                 <form action="/account/signup.php" method="post" id="deal-buy-form-signup" class="validator">
-                    <div class="field email">
-                        <label for="signup-email-address">Email</label>
-
-                        <input type="text" class="f-input" size="30" name="email" id="signup-email-address" require="true" datatype="email|ajax" msg="|" url="${WEB_ROOT}/ajax/validator.php" vname="signupemail" />
-                        <span class="hint">登录及找回密码用，不会公开</span>
-                    </div>
-                    <div class="field username">
-                        <label for="signup-username">用户名</label>
-                        <input type="text" class="f-input" size="30" name="username" id="signup-username" require="true" datatype="limit|ajax" min="2" max="16" vname="signupname" url="${WEB_ROOT}/ajax/validator.php" msg="|" maxLength="16" /><span class="hint">4-16 个字符，一个汉字为两个字符</span>
-
-                    </div>
 					<div class="field">
 						<label for="signup-password-confirm">手机号码</label>
 						<input type="text" size="30" name="mobile" id="signup-mobile" class="number" require="${option_yes('needmobile')?'true':'require'}" datatype="mobile" /><span class="hint">手机号码用于{$INI['system']['couponname']}的短信通知</span>

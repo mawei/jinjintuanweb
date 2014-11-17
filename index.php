@@ -5,8 +5,6 @@ if(!$INI['db']['host']) redirect( WEB_ROOT . '/install.php' );
 if($city&&option_yes('rewritecity')){
 	redirect(WEB_ROOT."/{$city['ename']}");
 }
-
-
 $request_uri = 'index';
 
 $group_id = abs(intval($_GET['gid']));
@@ -21,6 +19,7 @@ if (option_yes('indexmulti')&& option_yes('indexpage')) {
 			"begin_time < '{$now}'",
 			"end_time > '{$now}'",
 			);
+	
 	if($group_id) $condition['group_id']=$group_id;
 	$condition[] = "(city_ids like '%@{$city_id}@%' or city_ids like '%@0@%') or (city_ids = '' and city_id in(0,{$city_id}))";
 	$count = Table::Count('team', $condition);

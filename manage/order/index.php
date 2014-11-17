@@ -14,7 +14,6 @@ $t_id = Utility::GetColumn($teams, 'id');
 $condition = array(
 	'team_id' => $t_id,
 	'team_id > 0',
-	"service !='hdfk'",
 );
 /* filter */
 $uemail = strval($_GET['uemail']);
@@ -30,7 +29,6 @@ $team_id = abs(intval($_GET['team_id']));
 if ($team_id && in_array($team_id, $t_id)) {
 	$condition['team_id'] = $team_id;
 } else { $team_id = null; }
-
 $cbday = strval($_GET['cbday']);
 $ceday = strval($_GET['ceday']);
 $pbday = strval($_GET['pbday']);
