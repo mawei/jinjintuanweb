@@ -4,8 +4,8 @@ function sms_send($phone, $content) {
 	if (mb_strlen($content, 'UTF-8') < 20) {
 		return '短信长度低于20汉字？长点吧～';
 	}
-	$result = send_sms("355e91e02a95574559ebba5a3c1af6c2",$content,$phone);
-	return trim(strval($result['code']))=='OK' ? true : strval($res);
+	$result = send_sms_by_api("355e91e02a95574559ebba5a3c1af6c2",$content,$phone);
+	return trim(strval($result['code']))=='OK' ? true : false;
 }
 
 function sms_secret($mobile, $secret, $enable=true) {
@@ -257,7 +257,7 @@ function tpl_send_sms($apikey, $tpl_id, $tpl_value, $mobile){
  * text 为短信内容
  * mobile 为接受短信的手机号
  */
-function send_sms($apikey, $text, $mobile){
+function send_sms_by_api($apikey, $text, $mobile){
 	$url="http://yunpian.com/v1/sms/send.json";
 	$encoded_text = urlencode("$text");
 	$post_string="apikey=$apikey&text=$encoded_text&mobile=$mobile";

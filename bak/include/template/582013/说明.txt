@@ -1,6 +1,0 @@
-替换文件即可
-partner.heml header.html   路径 \include\template\582013
-
-money.php   路径 \manage\misc
-
-lrtk.css  路径\static\js\kf\css

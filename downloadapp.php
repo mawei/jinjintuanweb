@@ -1,5 +1,5 @@
 <?php
 require_once(dirname(__FILE__) . '/app.php');
 
-$pagetitle = "移动客户端";
+$pagetitle = "金金团手机版";
 include template('downloadapp');
