@@ -3,6 +3,6 @@ $value = array (
   'mid' => '',
   'sec' => '',
   'guarantee' => 'Y',
-  'direct' => 'Y',
+  'direct' => 'N',
 );
 ?>

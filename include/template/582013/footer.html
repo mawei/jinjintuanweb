@@ -60,8 +60,9 @@ $texts = DB::LimitQuery('friendlink', array(
   </LI></UL><!-- 热门，友情结束--><!--底部版权 -->
 <P>© 2013 <A href="{$INI['system']['wwwprefix']}">{$INI['system']['sitename']}</A>{$INI['system']['icp']}&nbsp;<A id=__szfw_logo__ 
 class=cxwzbs href="https://search.szfw.org/cert/l/CX20120918001650001720" 
-target=_blank><IMG align=absMiddle 
-src="/static/theme/58/css/img/rongyum.png" width=86 height=20> </A>
+target=_blank>
+<!-- <IMG align=absMiddle src="/static/theme/58/css/img/rongyum.png" width=86 height=20>
+ --> </A>
 <!--{if $INI['system']['statcode']}-->&nbsp;{$INI['system']['statcode']}<!--{/if}-->
 <DIV id=gongshangDiv></DIV>
 <P>技术支持： <script LANGUAGE="Javascript">document.write(unescape("金爸爸网络"))</SCRIPT></P>
@@ -114,7 +115,7 @@ return true;
 
 <DIV id="juhaoyong_xuanfukefu">
 <DIV id="juhaoyong_xuanfukefuBut" onmouseover="ShowJhyXuanfu()"><table class="juhaoyong_xuanfukefuBut_table" border="0" cellspacing="0" cellpadding="0"><tr><td>&nbsp;</td></tr></table></DIV>
-<DIV id="juhaoyong_xuanfukefuContent">
+<!-- <DIV id="juhaoyong_xuanfukefuContent">
 <table width="143" border="0" cellspacing="0" cellpadding="0">
 <tr><td class="juhaoyong_xuanfukefuContent01" valign="top"><SPAN style=" position:relative; top:5px; cursor:pointer; color:#ff90a5; font-size:12px;" onclick="CloseJhyXuanfu()">关闭</SPAN>&nbsp;</td></tr>
 <tr><td class="juhaoyong_xuanfukefuContent02" align="center">
@@ -127,10 +128,10 @@ return true;
     <tr><td class=jhykefu_box2><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=466989801&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:466989801:41 &r=0.11310546705499291" alt="点击这里给我发消息" title="点击这里给我发消息"></a></td></tr>
 	</table>
 </td></tr>	
-<!--下面这行，可以修改详细联系方式连接地址-->
+下面这行，可以修改详细联系方式连接地址
 <tr><td class="juhaoyong_xuanfukefuContent03" onclick=window.open("/about/contact.php","_blank")>&nbsp;</td></tr>
 </table>
-</DIV>
+</DIV> -->
 </DIV>
 <script type="text/javascript">
 juhaoyongKefu=function(id,_top,_left){

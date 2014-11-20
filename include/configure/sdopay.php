@@ -2,6 +2,6 @@
 $value = array (
   'mid' => '',
   'sec' => '',
-  'direct' => 'Y',
+  'direct' => 'N',
 );
 ?>

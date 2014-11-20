@@ -6,7 +6,7 @@ $value = array (
   'acc' => 'jinbaba@yeah.net',
   'itbpay' => '',
   'guaranteesuccess' => 'N',
-  'alifast' => 'Y',
+  'alifast' => 'N',
   'aliaddress' => 'Y',
 );
 ?>

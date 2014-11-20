@@ -23,7 +23,9 @@
         <li>
           <label for="signup-password-confirm">手机号码</label>
           <input type="text" size="30" name="mobile" id="signup-mobile" class="i_text" require="${option_yes('needmobile')?'true':'require'}" datatype="mobile|ajax" url="${WEB_ROOT}/ajax/validator.php" vname="signupmobile" msg="手机号码不正确|手机号码已经被注册" />
-          <button type="button" value="获取验证码" onclick="getcode();" class="input input42">获取验证码</button>
+<!--           <button id="getCodeBtn" type="button" onclick="getcode(this);" class="input input42">获取验证码</button>
+ -->          <input id="getCodeBtn" type="button" onclick="getcode(this);" class="input input42" value="获取验证码" />
+          
           <p><span class="c9" id="mobile_Tip">手机号码是我们联系您的最重要方式，并用于{$INI['system']['couponname']}的短信通知</span></p>
         </li>
         <li>
