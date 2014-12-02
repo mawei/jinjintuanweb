@@ -312,7 +312,7 @@ else {
 			{
 				$randid = strtolower(Utility::GenSecret(4, Utility::CHAR_WORD));
 				$pay_id = "go-{$order_id}-{$insert['quantity']}-{$randid}";
-				Table::UpdateCache('order', $order['id'], array(
+				Table::UpdateCache('order', $order_id, array(
 				'pay_id' => $pay_id,
 				));
 				$result = array('code'=>0,'message'=>'生成订单成功','data'=>$order_id);
