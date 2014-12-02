@@ -281,7 +281,7 @@ else {
 			$where .= " and t1.id={$orderid}";
 		}
 		list($pagesize, $offset, $pagestring) = pagestring($count, 10);
-		$sql = "SELECT t1.id,t1.team_id,t1.state,t1.quantity,t1.price,t1.create_time,t2.title,t2.image FROM `order` t1 left join `team` t2 on t1.team_id=t2.id WHERE t1.user_id=$userid".$where." order by t1.create_time DESC";
+		$sql = "SELECT t1.id,t1.team_id,t1.state,t1.quantity,t1.price,t1.create_time,t2.title,t2.image,t1.pay_id FROM `order` t1 left join `team` t2 on t1.team_id=t2.id WHERE t1.user_id=$userid".$where." order by t1.create_time DESC";
 		
 		if($orderid > 0)
 		{
