@@ -307,8 +307,14 @@ else {
 	// 		insert into `order` (user_id,team_id,quantity,price,state,express,allowrefund,credit)
 	// 		values (4,1,1,30,'unpay','N','N',0)
 			$order_id = DB::Insert('order', $insert);
+			
 			if($order_id > 0)
 			{
+				$randid = strtolower(Utility::GenSecret(4, Utility::CHAR_WORD));
+				$pay_id = "go-{$order_id}-{$insert['quantity']}-{$randid}";
+				Table::UpdateCache('order', $order['id'], array(
+				'pay_id' => $pay_id,
+				));
 				$result = array('code'=>0,'message'=>'生成订单成功','data'=>$order_id);
 			}else
 			{
