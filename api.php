@@ -282,7 +282,13 @@ else {
 		}
 		list($pagesize, $offset, $pagestring) = pagestring($count, 10);
 		$sql = "SELECT t1.id,t1.team_id,t1.state,t1.quantity,t1.price,t1.create_time,t2.title,t2.image FROM `order` t1 left join `team` t2 on t1.team_id=t2.id WHERE t1.user_id=$userid".$where." order by t1.create_time DESC";
-		$orders = DB::GetQueryResult($sql,false);
+		
+		if($orderid > 0)
+		{
+			$orders = DB::GetQueryResult($sql);
+		}else{
+			$orders = DB::GetQueryResult($sql,false);
+		}
 		$result = array('code'=>0,'message'=>'获取成功','data'=>$orders);
 	}
 	
