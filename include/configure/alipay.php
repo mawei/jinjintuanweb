@@ -7,6 +7,6 @@ $value = array (
   'itbpay' => '',
   'guaranteesuccess' => 'N',
   'alifast' => 'N',
-  'aliaddress' => 'Y',
+  'aliaddress' => 'N',
 );
 ?>
