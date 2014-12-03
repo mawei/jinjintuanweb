@@ -315,7 +315,7 @@ else {
 				Table::UpdateCache('order', $order_id, array(
 				'pay_id' => $pay_id,
 				));
-				$result = array('code'=>0,'message'=>'生成订单成功','data'=>$order_id);
+				$result = array('code'=>0,'message'=>'生成订单成功','data'=>$pay_id);
 			}else
 			{
 				$result = array('code'=>1,'message'=>'生成订单失败');
