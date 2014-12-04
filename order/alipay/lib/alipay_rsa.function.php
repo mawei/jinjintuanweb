@@ -34,9 +34,9 @@ function rsaSign($data, $private_key_path) {
  */
 function rsaVerify($data, $ali_public_key_path, $sign)  {
 	$pubKey = file_get_contents($ali_public_key_path);
-	logResult("[pubkey]:" + $pubKey);
+	logResult("[pubkey]:" . $pubKey);
     $res = openssl_get_publickey($pubKey);
-    logResult("[pubkeyres]:" + $res);
+    logResult("[pubkeyres]:" . $res);
     
     $result = (bool)openssl_verify($data, base64_decode($sign), $res);
     openssl_free_key($res);    
