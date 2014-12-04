@@ -329,6 +329,7 @@ else {
 		$order['quantity'] = $_REQUEST['quantity'];
 		$order['user_id'] = $userid;
 		
+		
 		$coupon_array = array('coupon', 'pickup');
 		$team = Table::FetchForce('team', $order['team_id']);
 		if (!in_array($team['delivery'], $coupon_array)) return;
