@@ -122,7 +122,7 @@ class AlipayNotify {
 		
 		//把数组所有元素，按照“参数=参数值”的模式用“&”字符拼接成字符串
 		$prestr = createLinkstring($para_sort);
-		
+		logResult($prestr);
 		$isSgin = false;
 		switch (strtoupper(trim($this->alipay_config['sign_type']))) {
 			case "RSA" :
