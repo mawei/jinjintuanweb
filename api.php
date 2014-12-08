@@ -327,6 +327,7 @@ else {
 		$orderid = $_REQUEST['orderid'];
 		$update['quantity'] = $_REQUEST['quantity'];
 	    DB::Update('order',array('id' => $orderid),$update);
+	    $result = array('code'=>0,'message'=>'更新订单成功');
 	}
 	
 	
