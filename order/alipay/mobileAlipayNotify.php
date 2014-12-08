@@ -54,6 +54,7 @@ if($verify_result) {//验证成功
 		$currency = 'CNY';
 		$service = 'alipay';
 		$bank = '支付宝';
+		logResult($bank.'-'.$order_id.'-'.$out_trade_no.'-'.$total_fee.'-'.$service);
 		ZOrder::OnlineIt($order_id, $out_trade_no, $total_fee, $currency, $service, $bank,$trade_no);
 		die('success');
 	}

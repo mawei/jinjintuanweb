@@ -304,6 +304,7 @@ else {
 			$insert['price'] = $team['team_price'];
 			$insert['allowrefund'] = $team['allowrefund'];
 			$insert['credit'] = 0;
+			$insert['create_time'] = time();
 	// 		insert into `order` (user_id,team_id,quantity,price,state,express,allowrefund,credit)
 	// 		values (4,1,1,30,'unpay','N','N',0)
 			$order_id = DB::Insert('order', $insert);
@@ -321,6 +322,13 @@ else {
 				$result = array('code'=>1,'message'=>'生成订单失败');
 			}
 	}
+	elseif($_REQUEST['act']=="updateorder")
+	{
+		$orderid = $_REQUEST['orderid'];
+		$update['quantity'] = $_REQUEST['quantity'];
+	    DB::Update('order',array('id' => $orderid),$update);
+	}
+	
 	
 	elseif($_REQUEST['act']=="createcoupon")
 	{
@@ -328,13 +336,13 @@ else {
 		$order['id'] = $_REQUEST['order_id'];
 		$order['quantity'] = $_REQUEST['quantity'];
 		$order['user_id'] = $userid;
-		
+		$order['create_time'] = time();
 		
 		$coupon_array = array('coupon', 'pickup');
 		$team = Table::FetchForce('team', $order['team_id']);
 		if (!in_array($team['delivery'], $coupon_array)) return;
 		
-		if ( $team['now_number'] >= $team['min_number'] && $team['now_number'] <= $team['max_number']) {
+		if ( $team['now_number'] >= $team['min_number'] && $team['now_number'] + $order['quantity'] <= $team['max_number']) {
 			//init coupon create;
 // 			$last = ($team['conduser']=='Y') ? 1 : $order['quantity'];
 // 			$offset = max(5, $last);
@@ -351,7 +359,7 @@ else {
 // 			}
 // 			else{
 // 			}
-				
+			
 			ZCoupon::Create($order);
 			$result = array('code'=>0,'message'=>'成功生成优惠券');				
 		}else{				
