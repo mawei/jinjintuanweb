@@ -282,7 +282,7 @@ class DB
 		$content = trim($content, ',');
 		$sql .= $content;
 		$sql .= " WHERE $condition";
-		
+		//echo $sql;die();
 		$result = self::Query ($sql);
 		if ( false==$result )
 		{

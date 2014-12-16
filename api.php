@@ -302,6 +302,7 @@ else {
 			$insert['state'] = 'unpay';
 			$insert['express'] = $team['express']==""?"N":"Y";
 			$insert['price'] = $team['team_price'];
+			$insert['orgin'] = $team['team_price'];
 			$insert['allowrefund'] = $team['allowrefund'];
 			$insert['credit'] = 0;
 			$insert['create_time'] = time();
