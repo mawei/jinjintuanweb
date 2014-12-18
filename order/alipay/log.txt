@@ -1,3 +1,6 @@
 集成时请注意：
 本文件log.txt请不要删除。
 该文本用于写日志函数。
+执行日期：20141204100942
+responseTxt=true
+ notify_url_log:isSign=false,

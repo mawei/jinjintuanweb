@@ -203,7 +203,7 @@ elseif($_REQUEST['act'] == 'signup')
 		}elseif($password != $password2)
 		{
 			$result = array('code'=>2,'message'=>'请确认密码是否一致');
-		}else if($code != $_SESSION['captcha_code'])
+		}else if($code == $_SESSION['captcha_code'])
 		{
 			$result = array('code'=>3,'message'=>'验证码错误');
 		}
@@ -302,7 +302,7 @@ else {
 			$insert['state'] = 'unpay';
 			$insert['express'] = $team['express']==""?"N":"Y";
 			$insert['price'] = $team['team_price'];
-			$insert['origin'] = $team['team_price'];
+			$insert['origin'] = $team['team_price']*$insert['quantity'];
 			$insert['allowrefund'] = $team['allowrefund'];
 			$insert['credit'] = 0;
 			$insert['create_time'] = time();
