@@ -39,33 +39,35 @@ class ZCoupon
 	}
 
 	static public function Create($order) {
-		$team = Table::Fetch('team', $order['team_id']);
-		$partner = Table::Fetch('partner', $order['partner_id']);
-		$ccon = array('order_id' => $order['id']);
-		$count = Table::Count('coupon', $ccon);
-		while($count<$order['quantity']) {
-			/* 配合400验证，ID统一修改为12位伪随机数字,密码为6位数字 */
-			$id = (ceil(time()/100)+rand(10000000,40000000)).rand(1000,9999);
-			$id = Utility::VerifyCode($id);
-			$cv = Table::Fetch('coupon', $id);
-			if ($cv) continue;
-            $coupon = array(
-					'id' => $id,
-					'user_id' => $order['user_id'],
-					'buy_id' => 0,
-					'partner_id' => $team['partner_id'],
-					'order_id' => $order['id'],
-					'credit' => $team['credit'],
-					'team_id' => $order['team_id'],
-					'secret' => Utility::VerifyCode(Utility::GenSecret(6, Utility::CHAR_NUM)),
-					'expire_time' => $team['expire_time'],
-					'create_time' => time(),
-					);
-			if(DB::Insert('coupon', $coupon))
-				sms_coupon($coupon);
+		if($order['id'] > 0)
+		{
+			$team = Table::Fetch('team', $order['team_id']);
+			$partner = Table::Fetch('partner', $order['partner_id']);
+			$ccon = array('order_id' => $order['id']);
 			$count = Table::Count('coupon', $ccon);
-			//print_r($coupon);die();
-				
+			while($count<$order['quantity']) {
+				/* 配合400验证，ID统一修改为12位伪随机数字,密码为6位数字 */
+				$id = (ceil(time()/100)+rand(10000000,40000000)).rand(1000,9999);
+				$id = Utility::VerifyCode($id);
+				$cv = Table::Fetch('coupon', $id);
+				if ($cv) continue;
+	            $coupon = array(
+						'id' => $id,
+						'user_id' => $order['user_id'],
+						'buy_id' => 0,
+						'partner_id' => $team['partner_id'],
+						'order_id' => $order['id'],
+						'credit' => $team['credit'],
+						'team_id' => $order['team_id'],
+						'secret' => Utility::VerifyCode(Utility::GenSecret(6, Utility::CHAR_NUM)),
+						'expire_time' => $team['expire_time'],
+						'create_time' => time(),
+						);
+				if(DB::Insert('coupon', $coupon))
+					sms_coupon($coupon);
+				$count = Table::Count('coupon', $ccon);
+				//print_r($coupon);die();
+			}
 		}
 	}
 }
