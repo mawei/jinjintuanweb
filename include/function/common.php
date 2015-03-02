@@ -504,7 +504,7 @@ function upload_image($input, $image=null, $type='team', $scale=false) {
 		}
 		if($type=='team' && $scale) {
 			$npath = preg_replace('#(\d+)\.(\w+)$#', "\\1_index.\\2", $path); 
-			Image::Convert($path, $npath, 100, 60, Image::MODE_SCALE);
+			Image::Convert($path, $npath, 300, 180, Image::MODE_SCALE);
 		}
 		return $image;
 	} 
